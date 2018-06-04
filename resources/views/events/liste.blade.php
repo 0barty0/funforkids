@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if (session('message'))
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="alert alert-success">
+        {{ session('message') }}
+      </div>
+    </div>
+  </div>
+@endif
+{{ link_to_route('event.create', 'Créer un nouvel événement', null, ['class' => 'btn btn-primary']) }}
     <section>
       <h1 class="text-center">Prochains événements de prévus</h1>
       <div class="row justify-content-center">{!! $links !!}</div>

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\EventRepository;
-use App\Http\Requests\EventRequest;
+use App\Http\Requests\EventCreateRequest;
+use App\Http\Requests\EventUpdateRequest;
 
 class EventController extends Controller
 {
@@ -52,7 +53,7 @@ class EventController extends Controller
 
         $this->eventRepository->store($inputs);
 
-        return redirect('event.index')->withMessage('L\'événement "' .$inputs['title']. '" a été créé');
+        return redirect()->route('event.index')->withMessage('L\'événement "' .$inputs['title']. '" a été créé');
     }
 
     /**
