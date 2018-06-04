@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class event extends Model
 {
@@ -13,5 +14,20 @@ class event extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function getDateStartAttribute()
+    {
+        return Carbon::parse($this->attributes['date_start']);
+    }
+
+    public function getDateEndAttribute()
+    {
+        return Carbon::parse($this->attributes['date_end']);
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at']);
     }
 }

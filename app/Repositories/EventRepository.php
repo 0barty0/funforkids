@@ -25,7 +25,7 @@ class EventRepository
 
     public function getById($id)
     {
-        $this->event->findOrFail($id);
+        return $this->event->findOrFail($id);
     }
 
     public function update($id, $inputs)
