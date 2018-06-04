@@ -9,9 +9,9 @@ class event extends Model
     protected $fillable = [
       'user_id','title','content','date_start','date_end','time_start','time_end'
     ];
-    
+
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 }

@@ -10,10 +10,20 @@ class EventsTableSeeder extends Seeder
         return Carbon::createFromDate(null, rand(1, 12), rand(1, 28));
     }
 
+    private function randEventDates($date)
+    {
+        $date_start = clone $date;
+        $date_start->addDays(rand(1, 90));
+        $date_end = clone $date_start;
+        $date_end->addDays(rand(0, 3));
+
+        return ['date_start'=> ($date_start->format('Y:m:d')), 'date_end'=> ($date_end->format('Y:m:d'))];
+    }
+
     private function randEventTimes()
     {
         $h_time_start = rand(8, 23);
-        $h_time_end = ($h_time_start + rand(1, (24-$h_time_start)));
+        $h_time_end = ($h_time_start + rand(1, (24-$h_time_start)))%24;
 
         $time_start = $h_time_start . ":" ."00".":00";
         $time_end = $h_time_end . ":" ."00".":00";
@@ -32,8 +42,7 @@ class EventsTableSeeder extends Seeder
 
         for ($i=1; $i<=20; $i++) {
             $date = $this->randDate();
-            $date_start = $date->addDays(rand(1, 90));
-            $date_end = $date_start->addDays(rand(0, 3));
+            $eventDates = $this->randEventDates($date);
             $eventTimes = $this->randEventTimes();
 
             DB::table('events')->insert([
@@ -42,8 +51,8 @@ class EventsTableSeeder extends Seeder
             'user_id' => rand(1, 10),
             'created_at' => $date,
             'updated_at' => $date,
-            'date_start' => $date_start->format('Y:m:d'),
-            'date_end' => $date_end->format('Y:m:d'),
+            'date_start' => $eventDates['date_start'],
+            'date_end' => $eventDates['date_end'],
             'time_start' => $eventTimes['time_start'],
             'time_end' => $eventTimes['time_end']
           ]);
