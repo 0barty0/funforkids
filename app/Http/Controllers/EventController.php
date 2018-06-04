@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\EventRepository;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
+    protected $eventRepository;
+
+    protected $nbrPerPage = 6;
+
+    public function __construct(EventRepository $eventRepository)
+    {
+        $this->middleware('auth', ['except' => 'index']);
+        $this->eventRepository = $eventRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = $this->eventRepository->getPaginate($this->nbrPerPage);
+        $links = $events->render();
+
+        return view('events.liste', compact('events', 'links'));
     }
 
     /**
@@ -23,7 +37,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -32,9 +46,13 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventCreateRequest $request)
     {
-        //
+        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+
+        $this->eventRepository->store($inputs);
+
+        return redirect('event.index')->withMessage('L\'événement "' .$inputs['title']. '" a été créé');
     }
 
     /**
@@ -45,7 +63,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = $this->eventRepository->getById($id);
+
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -56,7 +76,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = $this->eventRepository->getById($id);
+
+        return view('event.edit', compact('event'));
     }
 
     /**
@@ -66,9 +88,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventUpdateRequest $request, $id)
     {
-        //
+        $this->eventRepository->update($id, $request->all());
+
+        return redirect('view.index')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
     }
 
     /**
@@ -79,6 +103,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->eventRepository->destroy($id);
+
+        return redirect()->back();
     }
 }
