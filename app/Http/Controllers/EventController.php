@@ -79,7 +79,7 @@ class EventController extends Controller
     {
         $event = $this->eventRepository->getById($id);
 
-        return view('event.edit', compact('event'));
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -93,7 +93,7 @@ class EventController extends Controller
     {
         $this->eventRepository->update($id, $request->all());
 
-        return redirect('view.index')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
+        return redirect()->route('event.index')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
     }
 
     /**
