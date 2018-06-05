@@ -14,7 +14,8 @@ class EventController extends Controller
 
     public function __construct(EventRepository $eventRepository)
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('user', ['only' => ['edit', 'destroy']]);
         $this->eventRepository = $eventRepository;
     }
 
