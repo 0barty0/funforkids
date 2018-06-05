@@ -28,6 +28,11 @@ class EventRepository
         return $this->event->findOrFail($id);
     }
 
+    public function getByUserId($id)
+    {
+        return $this->event->where('user_id', '=', $id)->orderBy('date_start')->get();
+    }
+
     public function update($id, $inputs)
     {
         $this->event->findOrFail($id)->update($inputs);

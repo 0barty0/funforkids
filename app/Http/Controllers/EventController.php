@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\EventRepository;
 use App\Http\Requests\EventCreateRequest;
 use App\Http\Requests\EventUpdateRequest;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
@@ -15,7 +16,7 @@ class EventController extends Controller
     public function __construct(EventRepository $eventRepository)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('user', ['only' => ['edit', 'destroy']]);
+        $this->middleware('userManage', ['only' => ['edit', 'destroy']]);
         $this->eventRepository = $eventRepository;
     }
 
@@ -94,7 +95,7 @@ class EventController extends Controller
     {
         $this->eventRepository->update($id, $request->all());
 
-        return redirect()->route('event.index')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
+        return redirect()->route('user.events')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
     }
 
     /**
@@ -107,6 +108,13 @@ class EventController extends Controller
     {
         $this->eventRepository->destroy($id);
 
-        return redirect()->back();
+        return redirect()->route('user.events')->withMessage('L\'événement a été supprimé');
+    }
+
+    public function userEvents(Request $request)
+    {
+        $events = $this->eventRepository->getByUserId($request->user()->id);
+
+        return view('events.userEvents', compact('events'));
     }
 }

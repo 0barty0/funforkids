@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('event', 'EventController');
+
+Route::get('/user/events', 'EventController@userEvents')->name('user.events');

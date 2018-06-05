@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\RedirectResponse;
 
-class User
+class UserManage
 {
     /**
      * Handle an incoming request.

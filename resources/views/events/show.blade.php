@@ -17,6 +17,7 @@
           </p>
         </div>
       </article>
+      <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
     </div>
   </section>
 @endsection
