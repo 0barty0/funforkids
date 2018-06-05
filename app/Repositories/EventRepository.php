@@ -15,7 +15,7 @@ class EventRepository
 
     public function getPaginate($nb)
     {
-        return $this->event->with('user')->orderBy('events.date_start', 'asc')->paginate($nb);
+        return $this->event->with('user')->whereDate('events.date_start', '>=', date('Y-m-d'))->orderBy('events.date_start', 'asc')->paginate($nb);
     }
 
     public function store($inputs)
