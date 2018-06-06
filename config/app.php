@@ -211,4 +211,6 @@ return [
 
     ],
 
+    'faker_locale' => 'fr_FR',
+
 ];

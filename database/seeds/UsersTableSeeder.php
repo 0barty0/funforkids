@@ -13,12 +13,6 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        for ($i = 1; $i <= 10; $i++) {
-            DB::table('users')->insert([
-            'name' => 'Nom' .$i,
-            'email' => 'email' .$i. '@fai.fr',
-            'password' => bcrypt('password' .$i)
-          ]);
-        }
+        factory(App\User::class, 10)->create();
     }
 }
