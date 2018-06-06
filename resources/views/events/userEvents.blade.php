@@ -10,7 +10,7 @@
       </div>
     </div>
   @endif
-  {{ link_to_route('event.create', 'Créer un nouvel événement', null, ['class' => 'btn btn-primary']) }}
+  
       <section>
         <h1 class="text-center">Vos événements</h1>
         @foreach ($events as $event)
