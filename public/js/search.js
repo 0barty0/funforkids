@@ -7,6 +7,10 @@ $.addTemplateFormatter("timeFormat", function(value, template) {
   return value.substring(0,5);
 });
 
+$.addTemplateFormatter("linkFormat", function(value, template) {
+  return "/event/" + value;
+});
+
 function searchDate() {
   $.ajaxSetup({
   headers: {
