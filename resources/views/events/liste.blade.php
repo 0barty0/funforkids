@@ -10,10 +10,12 @@
     </div>
   </div>
 @endif
-
     <section>
       <h1 class="text-center">Prochains événements de prévus</h1>
       <div class="row justify-content-center">{!! $links !!}</div>
+      <div class="month">
+        <h1>{{ $events[0]->date_start->format('F') }}</h1>
+      </div>
       @foreach ($events as $event)
         <article class="row justify-content-center">
           <div class="col-md-8 mb-3">

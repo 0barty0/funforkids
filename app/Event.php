@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 use Collective\Html\Eloquent\FormAccessible;
+use Jenssegers\Date\Date;
 
 class event extends Model
 {
@@ -21,36 +21,36 @@ class event extends Model
 
     public function getDateStartAttribute()
     {
-        return Carbon::parse($this->attributes['date_start']);
+        return Date::parse($this->attributes['date_start']);
     }
 
     public function getDateEndAttribute()
     {
-        return Carbon::parse($this->attributes['date_end']);
+        return Date::parse($this->attributes['date_end']);
     }
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at']);
+        return Date::parse($this->attributes['created_at']);
     }
 
     public function formDateStartAttribute($value)
     {
-        return Carbon::parse($value)->format('Y-m-d');
+        return Date::parse($value)->format('Y-m-d');
     }
 
     public function formDateEndAttribute($value)
     {
-        return Carbon::parse($value)->format('Y-m-d');
+        return Date::parse($value)->format('Y-m-d');
     }
 
     public function formTimeStartAttribute($value)
     {
-        return Carbon::parse($value)->format('H:i');
+        return Date::parse($value)->format('H:i');
     }
 
     public function formTimeEndAttribute($value)
     {
-        return Carbon::parse($value)->format('H:i');
+        return Date::parse($value)->format('H:i');
     }
 }
