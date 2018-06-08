@@ -18,3 +18,5 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('event', 'EventController');
 
 Route::get('/user/events', 'EventController@userEvents')->name('user.events');
+
+Route::get('search/date', 'SearchController@searchDate')->name('search.date');
