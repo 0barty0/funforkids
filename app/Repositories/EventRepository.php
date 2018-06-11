@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Event;
+use Jenssegers\Date\Date;
 
 class EventRepository
 {
@@ -20,13 +21,13 @@ class EventRepository
 
     public function getAgenda()
     {
-        $startDate = new \DateTime();
+        $startDate = new Date();
         $endDate = clone $startDate;
-        $endDate->add(new \DateInterval('P3M'));
+        $endDate->add(new \DateInterval('P6M'));
         $events = [];
 
         while ($startDate <= $endDate) {
-            $events[$startDate->format('Y')][$startDate->format('m')][$startDate->format('d')] = $this->getByDate($startDate);
+            $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDate($startDate);
 
             $startDate->add(new \DateInterval('P1D')) ;
         }

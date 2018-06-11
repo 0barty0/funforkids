@@ -27,10 +27,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = $this->eventRepository->getPaginate($this->nbrPerPage);
-        $links = $events->render();
+        $events = $this->eventRepository->getAgenda();
 
-        return view('events.liste', compact('events', 'links'));
+        return view('events.liste', compact('events'));
     }
 
     /**
