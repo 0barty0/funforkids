@@ -18,6 +18,27 @@ class EventRepository
         return $this->event->with('user')->whereDate('events.date_start', '>=', date('Y-m-d'))->orderBy('events.date_start', 'asc')->paginate($nb);
     }
 
+    public function getAgenda()
+    {
+        $startDate = new \DateTime();
+        $endDate = clone $startDate;
+        $endDate->add(new \DateInterval('P3M'));
+        $events = [];
+
+        while ($startDate <= $endDate) {
+            $events[$startDate->format('Y')][$startDate->format('m')][$startDate->format('d')] = $this->getByDate($startDate);
+
+            $startDate->add(new \DateInterval('P1D')) ;
+        }
+
+        return $events;
+    }
+
+    public function getByDate($date)
+    {
+        return $this->event->with('user')->whereDate('events.date_start', '<=', $date)->whereDate('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
+    }
+
     public function store($inputs)
     {
         $this->event->create($inputs);
