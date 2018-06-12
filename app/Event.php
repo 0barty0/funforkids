@@ -34,6 +34,16 @@ class event extends Model
         return Date::parse($this->attributes['created_at']);
     }
 
+    public function getTimeStartAttribute()
+    {
+        return substr($this->attributes['time_start'], 0, 5);
+    }
+
+    public function getTimeEndAttribute()
+    {
+        return substr($this->attributes['time_end'], 0, 5);
+    }
+
     public function formDateStartAttribute($value)
     {
         return Date::parse($value)->format('Y-m-d');

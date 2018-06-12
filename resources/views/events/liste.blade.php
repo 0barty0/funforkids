@@ -30,8 +30,8 @@
                       @foreach ($dayEvents as $event)
                         <article class="row mb-3">
                           <div class="col-sm-2 text-right">
-                            <h5>{{ substr($event->time_start, 0, 5) }}</h5>
-                            <h5>{{ substr($event->time_end, 0, 5) }}</h5>
+                            <h5>{{ $event->time_start }}</h5>
+                            <h5>{{ $event->time_end }}</h5>
                           </div>
                           <div class="col-sm-10">
                                 @component('events.article', ['event' => $event])
