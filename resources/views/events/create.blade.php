@@ -54,8 +54,8 @@
             </div>
             <div class="form-group">
               <div class="custom-file">
-                {!! Form::file('image', ['class' => 'custom-file-input']) !!}
-                {!! Form::label('image', 'Choisir une image', ['class' => 'custom-file-label']) !!}
+                {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'file-input']) !!}
+                {!! Form::label('image', 'Choisir une image pour illustrer', ['class' => 'custom-file-label']) !!}
               </div>
             </div>
             {!! Form::submit('Publier', ['class' => 'btn btn-primary float-right']) !!}
@@ -64,4 +64,15 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+  <script>
+    $(function() {
+      $('.custom-file-input').on('change', function() {
+        let filename = document.getElementById('file-input').files[0].name;
+        $(this).next('.custom-file-label').html(filename);
+      });
+    });
+  </script>
 @endsection
