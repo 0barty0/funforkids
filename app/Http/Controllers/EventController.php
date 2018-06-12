@@ -6,6 +6,7 @@ use App\Repositories\EventRepository;
 use App\Http\Requests\EventCreateRequest;
 use App\Http\Requests\EventUpdateRequest;
 use Illuminate\Http\Request;
+use App\Event;
 
 class EventController extends Controller
 {
@@ -96,7 +97,7 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventUpdateRequest $request, $id)
+    public function update(EventUpdateRequest $request, Event $event)
     {
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/images');
@@ -104,7 +105,7 @@ class EventController extends Controller
         } else {
             $inputs = $request->all();
         }
-        $this->eventRepository->update($id, $inputs);
+        $this->eventRepository->update($event->id, $inputs);
 
         return redirect()->route('user.events')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
     }

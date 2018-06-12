@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class EventUpdateRequest extends FormRequest
@@ -24,7 +26,7 @@ class EventUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required|Max:255',
+          'title' => ['required','Max:255',Rule::unique('events')->ignore($this->event->id)],
           'content' => 'required',
           'date_start' => 'required|date|after_or_equal:tomorrow',
           'date_end' => 'required|date|after_or_equal:date_start',
