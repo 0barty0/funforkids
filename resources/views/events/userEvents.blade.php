@@ -10,17 +10,13 @@
       </div>
     </div>
   @endif
-  
+
       <section>
         <h1 class="text-center">Vos événements</h1>
         @foreach ($events as $event)
           <article class="row justify-content-center">
             <div class="col-md-8 mb-3">
-              <div class="card">
-                <div class="card-header text-white bg-primary">
-                  <a href="/event/{{ $event->id }}" class="text-white"><h2>{{ $event->title }}</h2></a>
-                  <p>du {{ $event->date_start->format('d/m/Y') }} au {{ $event->date_end->format('d/m/Y') }}</p>
-                </div>
+              @component('events.article', ['event'=>$event])
                 <div class="card-body">
                   {{ $event->content }}
                 </div>
@@ -28,7 +24,9 @@
                   <div class="row">
                     <div class="col-md-6">
                       <a href="/event/{{ $event->id }}/edit" class="btn btn-warning">Modifier</a>
+
                       <button class="btn btn-danger" onclick="if (confirm('Voulez-vous vraiment supprimer cet événement ?')) {document.getElementById('delete-form').submit();}">Supprimer</button>
+                      
                       {!! Form::open(['route' => ['event.destroy', $event->id], 'method' => 'DELETE', 'id' => 'delete-form']) !!}
                       {!! Form::close() !!}
                     </div>
@@ -37,7 +35,7 @@
                     </p>
                   </div>
                 </div>
-              </div>
+              @endcomponent
             </div>
           </article>
         @endforeach

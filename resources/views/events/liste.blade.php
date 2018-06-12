@@ -16,7 +16,9 @@
       @foreach ($events as $yearName => $yearEvents)
         @if (collect($yearEvents)->flatten()->isNotEmpty())
           <div class="year">
+            @if (!$loop->first)
             <h2>{{ $yearName }}</h2>
+            @endif
           @foreach ($yearEvents as $monthName => $monthEvents)
             @if (collect($monthEvents)->flatten()->isNotEmpty())
               <div class="month">
@@ -26,20 +28,14 @@
                     <div class="day">
                       <h4>{{ ucfirst($dayName) }}</h4>
                       @foreach ($dayEvents as $event)
-                        <article class="row">
-                          <div class="col-sm-4 text-right">
+                        <article class="row mb-3">
+                          <div class="col-sm-2 text-right">
                             <h5>{{ substr($event->time_start, 0, 5) }}</h5>
                             <h5>{{ substr($event->time_end, 0, 5) }}</h5>
                           </div>
-                          <div class="col-sm-7 bg-primary text-white mb-1">
-                                <a href="event/{{ $event->id }}" class="text-white"><h2>{{ $event->title }}</h2></a>
-                                @if ($event->date_start == $event->date_end)
-                                  <p>le {{ $event->date_start->format('d/m/Y') }}</p>
-                                @else
-                                  <p>du {{ $event->date_start->format('d/m/Y') }} au {{ $event->date_end->format('d/m/Y') }}</p>
-                                @endif
-
-                                <img src="{{ $event->getImage() }}" alt="">
+                          <div class="col-sm-10">
+                                @component('events.article', ['event' => $event])
+                                @endcomponent
                           </div>
                         </article>
                       @endforeach
