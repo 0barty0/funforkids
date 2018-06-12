@@ -17,16 +17,13 @@
           <article class="row justify-content-center">
             <div class="col-md-8 mb-3">
               @component('events.article', ['event'=>$event])
-                <div class="card-body">
-                  {{ $event->content }}
-                </div>
                 <div class="card-footer">
                   <div class="row">
                     <div class="col-md-6">
                       <a href="/event/{{ $event->id }}/edit" class="btn btn-warning">Modifier</a>
 
                       <button class="btn btn-danger" onclick="if (confirm('Voulez-vous vraiment supprimer cet événement ?')) {document.getElementById('delete-form').submit();}">Supprimer</button>
-                      
+
                       {!! Form::open(['route' => ['event.destroy', $event->id], 'method' => 'DELETE', 'id' => 'delete-form']) !!}
                       {!! Form::close() !!}
                     </div>

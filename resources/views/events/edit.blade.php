@@ -4,9 +4,9 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <h2 class="card-header text-white bg-primary">Ajout d'un événement</h2>
+        <h2 class="card-header text-white bg-primary">Modification d'un événement</h2>
         <div class="card-body">
-          {!! Form::model($event, ['route' => ['event.update', $event->id], 'method' => 'PUT']) !!}
+          {!! Form::model($event, ['route' => ['event.update', $event->id], 'method' => 'PUT', 'files' => 'true']) !!}
             <div class="form-group">
               {!! Form::text('title', null, ['class' => 'form-control' .($errors->has('title')? ' is-invalid' : ''), 'placeholder' => 'Titre']) !!}
 
@@ -44,10 +44,32 @@
               {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation']) !!}
               {!! $errors->first('content', '<div class="invalid-feedback">:message</div>') !!}
             </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <img src="{{ $event->getImage() }}" alt="" class="img-thumbnail">
+              </div>
+              <div class="col-md-8">
+                <div class="custom-file">
+                  {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'file-input']) !!}
+                  {!! Form::label('image', 'Changer d\'image', ['class' => 'custom-file-label']) !!}
+                </div>
+              </div>
+            </div>
             {!! Form::submit('Modifier', ['class' => 'btn btn-primary float-right']) !!}
           {!! Form::close() !!}
         </div>
       </div>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+  <script>
+    $(function() {
+      $('.custom-file-input').on('change', function() {
+        let filename = document.getElementById('file-input').files[0].name;
+        $(this).next('.custom-file-label').html(filename);
+      });
+    });
+  </script>
 @endsection

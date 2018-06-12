@@ -98,7 +98,13 @@ class EventController extends Controller
      */
     public function update(EventUpdateRequest $request, $id)
     {
-        $this->eventRepository->update($id, $request->all());
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $inputs = array_merge($request->all(), ['path_image' => $path]);
+        } else {
+            $inputs = $request->all();
+        }
+        $this->eventRepository->update($id, $inputs);
 
         return redirect()->route('user.events')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
     }
