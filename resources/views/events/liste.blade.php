@@ -29,7 +29,7 @@
                       <h4>{{ ucfirst($dayName) }}</h4>
                       @foreach ($dayEvents as $event)
                         <article class="row mb-3">
-                          <div class="col-sm-2 text-right">
+                          <div class="col-sm-2 text-right vertical-center">
                             <h5>{{ $event->time_start }}</h5>
                             <h5>{{ $event->time_end }}</h5>
                           </div>
