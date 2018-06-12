@@ -29,7 +29,8 @@ class EventCreateRequest extends FormRequest
             'date_start' => 'required|date|after_or_equal:tomorrow',
             'date_end' => 'required|date|after_or_equal:date_start',
             'time_start' => 'required|date_format:H:i',
-            'time_end' => 'required|date_format:H:i|after:time_start'
+            'time_end' => 'required|date_format:H:i|after:time_start',
+            'image' => 'image'
         ];
     }
 }

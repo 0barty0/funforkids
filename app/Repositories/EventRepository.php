@@ -27,7 +27,7 @@ class EventRepository
         $events = [];
 
         while ($startDate <= $endDate) {
-            $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDate($startDate);
+            $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDate($startDate->format('Y-m-d'));
 
             $startDate->add(new \DateInterval('P1D')) ;
         }
@@ -37,7 +37,7 @@ class EventRepository
 
     public function getByDate($date)
     {
-        return $this->event->with('user')->whereDate('events.date_start', '<=', $date)->whereDate('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
+        return $this->event->with('user')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
     }
 
     public function store($inputs)

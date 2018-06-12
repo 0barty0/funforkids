@@ -50,7 +50,13 @@ class EventController extends Controller
      */
     public function store(EventCreateRequest $request)
     {
-        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        if ($request->has('image')) {
+            $path = $request->file('image')->store('public/images');
+            $inputs = array_merge($request->all(), ['user_id' => $request->user()->id, 'path_image' => $path]);
+        } else {
+            $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        }
+
 
         $this->eventRepository->store($inputs);
 

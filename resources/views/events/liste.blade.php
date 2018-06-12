@@ -38,6 +38,8 @@
                                 @else
                                   <p>du {{ $event->date_start->format('d/m/Y') }} au {{ $event->date_end->format('d/m/Y') }}</p>
                                 @endif
+
+                                <img src="{{ $event->getImage() }}" alt="">
                           </div>
                         </article>
                       @endforeach

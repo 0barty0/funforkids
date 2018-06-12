@@ -9,7 +9,7 @@ use Jenssegers\Date\Date;
 class event extends Model
 {
     protected $fillable = [
-      'user_id','title','content','date_start','date_end','time_start','time_end'
+      'user_id','title','content','date_start','date_end','time_start','time_end', 'path_image'
     ];
 
     use FormAccessible;
@@ -52,5 +52,10 @@ class event extends Model
     public function formTimeEndAttribute($value)
     {
         return Date::parse($value)->format('H:i');
+    }
+
+    public function getImage()
+    {
+        return \Storage::url($this->path_image);
     }
 }

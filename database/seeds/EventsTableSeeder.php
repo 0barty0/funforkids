@@ -14,6 +14,6 @@ class EventsTableSeeder extends Seeder
     {
         DB::table('events')->delete();
 
-        factory(App\Event::class, 30)->create();
+        factory(App\Event::class, 20)->create();
     }
 }

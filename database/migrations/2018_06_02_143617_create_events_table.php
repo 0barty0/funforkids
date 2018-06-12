@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->date('date_end');
             $table->time('time_start');
             $table->time('time_end');
+            $table->string('path_image')->nullable();
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
