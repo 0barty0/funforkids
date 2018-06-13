@@ -8,7 +8,8 @@
         <div class="card-body">
           {!! Form::open(['route' => 'event.store', 'files' => 'true']) !!}
             <div class="form-group">
-              {!! Form::text('title', null, ['class' => 'form-control' .($errors->has('title')? ' is-invalid' : ''), 'placeholder' => 'Titre']) !!}
+              {!! Form::label('title', 'Titre') !!}
+              {!! Form::text('title', null, ['class' => 'form-control' .($errors->has('title')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
               {!! $errors->first('title', '<div class="invalid-feedback">:message</div>') !!}
             </div>
@@ -16,7 +17,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   {!! Form::label('date_start', 'Date du début') !!}
-                  {!! Form::date('date_start', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_start')? ' is-invalid' : '')]) !!}
+                  {!! Form::date('date_start', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_start')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
                   {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
@@ -24,7 +25,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   {!! Form::label('date_end', 'Date de fin') !!}
-                  {!! Form::date('date_end', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_end')? ' is-invalid' : '')]) !!}
+                  {!! Form::date('date_end', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_end')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
                   {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
@@ -34,7 +35,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   {!! Form::label('time_start', 'Heure du début') !!}
-                  {!! Form::text('time_start', null, ['class' => 'form-control' .($errors->has('time_start')? ' is-invalid' : ''), 'placeholder' => 'hh:mm']) !!}
+                  {!! Form::time('time_start', null, ['class' => 'form-control' .($errors->has('time_start')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
                   {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
@@ -42,7 +43,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   {!! Form::label('time_end', 'Heure de la fin') !!}
-                  {!! Form::text('time_end', null, ['class' => 'form-control' .($errors->has('time_end')? ' is-invalid' : ''), 'placeholder' => 'hh:mm']) !!}
+                  {!! Form::time('time_end', null, ['class' => 'form-control' .($errors->has('time_end')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
                   {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
@@ -50,11 +51,14 @@
             </div>
             <div class="form-group">
               {{ Form::label('place', 'Lieu')}}
-              {{ Form::text('place', null, ['class' => 'form-control'])}}
+              {{ Form::text('place', null, ['class' => 'form-control' .($errors->has('place')? 'is-invalid' : ''), 'required' => 'true'])}}
               {{ Form::hidden('place_id') }}
+              {{ Form::hidden('place_verification') }}
+
+              {!! $errors->first('place', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="form-group">
-              {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation']) !!}
+              {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
               {!! $errors->first('content', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="form-group">
@@ -88,6 +92,7 @@
     function getPlaceId() {
       let place = autocomplete.getPlace();
       $('input[name=place_id]').val(place['place_id']);
+      $('input[name=place_verification]').val(place['name']);
     }
   </script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjExSHAuBYPmeKLtZAoVtnPRt43yA6bpw&libraries=places&callback=initAutocomplete" async defer></script>
@@ -96,6 +101,19 @@
       $('.custom-file-input').on('change', function() {
         let filename = document.getElementById('file-input').files[0].name;
         $(this).next('.custom-file-label').html(filename);
+      });
+
+      // Form validation
+      $('form').on('submit', function(e){
+        // Verify if a google place has been selected
+        let place = $('input[name=place]').val(),
+            place_verification = $('input[name=place_verification]').val();
+        if (place !== place_verification) {
+          e.preventDefault();
+          e.stopPropagation();
+          $('input[name=place]').addClass('is-invalid');
+          $('input[name=place]').parent().append('<div class="invalid-feedback">Veuillez entrer une adresse valide</div>')
+        }
       });
     });
   </script>

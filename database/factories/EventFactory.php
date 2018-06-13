@@ -3,6 +3,9 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Event::class, function (Faker $faker) {
+    /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress $address */
+    $address = $faker->frenchAddress();
+
     $dateStart = $faker->dateTimeBetween('now', '+3 months');
     $nbDays = '+' .$faker->biasedNumberBetween(0, 5, 'Faker\Provider\Biased::linearLow'). ' days';
     $dateEnd = $faker->dateTimeInInterval($dateStart, $nbDays);
@@ -20,6 +23,8 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'date_end' => $dateEnd,
         'time_start'=> $timeStart,
         'time_end' => $timeEnd,
+        'place' => $address->getFormattedAddress(),
+        'place_id' => $address->getId(),
         'created_at' => $faker->dateTimeBetween('-3 months', 'now'),
         'path_image' => 'public/images/' . $faker->image($dir = 'storage/app/public/images', $width = 640, $height = 480, false, false),
     ];

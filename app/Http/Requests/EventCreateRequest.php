@@ -26,10 +26,12 @@ class EventCreateRequest extends FormRequest
         return [
             'title' => 'required|Max:255|unique:events,title',
             'content' => 'required',
-            'date_start' => 'required|date|after_or_equal:tomorrow',
+            'date_start' => 'required|date|after_or_equal:today',
             'date_end' => 'required|date|after_or_equal:date_start',
             'time_start' => 'required|date_format:H:i',
             'time_end' => 'required|date_format:H:i|after:time_start',
+            'place' => 'required',
+            'place_id' => 'required',
             'image' => 'image'
         ];
     }

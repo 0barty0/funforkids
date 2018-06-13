@@ -9,7 +9,7 @@ use Jenssegers\Date\Date;
 class event extends Model
 {
     protected $fillable = [
-      'user_id','title','content','date_start','date_end','time_start','time_end', 'path_image'
+      'user_id','title','content','date_start','date_end','time_start','time_end', 'place', 'place_id', 'path_image'
     ];
 
     use FormAccessible;
