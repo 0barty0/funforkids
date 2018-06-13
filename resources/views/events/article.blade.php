@@ -11,6 +11,7 @@
         @endif
          de {{ $event->time_start }} à {{ $event->time_end }}
         </p>
+        <p>Lieu : {{ $event->place }}</p>
       </div>
       <div class="col-sm-4">
         <img class="card-img-top" src="{{ $event->getImage() }}" alt="">

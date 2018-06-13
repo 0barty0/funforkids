@@ -53,7 +53,7 @@
             {{ Form::label('place', 'Lieu')}}
             {{ Form::text('place', null, ['class' => 'form-control' .($errors->has('place')? 'is-invalid' : ''), 'required' => 'true'])}}
             {{ Form::hidden('place_id') }}
-            {{ Form::hidden('place_verification') }}
+            {{ Form::hidden('place_verification', $event->place) }}
 
             {!! $errors->first('place', '<div class="invalid-feedback">:message</div>') !!}
           </div>
