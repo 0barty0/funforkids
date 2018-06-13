@@ -11,7 +11,9 @@
               {!! Form::label('title', 'Titre') !!}
               {!! Form::text('title', null, ['class' => 'form-control' .($errors->has('title')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
-              {!! $errors->first('title', '<div class="invalid-feedback">:message</div>') !!}
+              <div class="invalid-feedback">
+                {!! $errors->first('title', ':message') !!}
+              </div>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -19,7 +21,9 @@
                   {!! Form::label('date_start', 'Date du début') !!}
                   {!! Form::date('date_start', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_start')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
-                  {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
+                  <div class="invalid-feedback">
+                    {!! $errors->first('date_start', ':message') !!}
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -27,7 +31,9 @@
                   {!! Form::label('date_end', 'Date de fin') !!}
                   {!! Form::date('date_end', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_end')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
-                  {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
+                  <div class="invalid-feedback">
+                    {!! $errors->first('date_start', ':message') !!}
+                  </div>
                 </div>
               </div>
             </div>
@@ -37,7 +43,9 @@
                   {!! Form::label('time_start', 'Heure du début') !!}
                   {!! Form::time('time_start', null, ['class' => 'form-control' .($errors->has('time_start')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
-                  {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
+                  <div class="invalid-feedback">
+                    {!! $errors->first('date_start', ':message') !!}
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -45,7 +53,9 @@
                   {!! Form::label('time_end', 'Heure de la fin') !!}
                   {!! Form::time('time_end', null, ['class' => 'form-control' .($errors->has('time_end')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
-                  {!! $errors->first('date_start', '<div class="invalid-feedback">:message</div>') !!}
+                  <div class="invalid-feedback">
+                    {!! $errors->first('date_start', ':message') !!}
+                  </div>
                 </div>
               </div>
             </div>
@@ -55,11 +65,16 @@
               {{ Form::hidden('place_id') }}
               {{ Form::hidden('place_verification') }}
 
-              {!! $errors->first('place', '<div class="invalid-feedback">:message</div>') !!}
+              <div class="invalid-feedback">
+                {!! $errors->first('place', ':message') !!}
+              </div>
             </div>
             <div class="form-group">
               {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
-              {!! $errors->first('content', '<div class="invalid-feedback">:message</div>') !!}
+
+              <div class="invalid-feedback">
+                {!! $errors->first('content', ':message') !!}
+              </div>
             </div>
             <div class="form-group">
               <div class="custom-file">

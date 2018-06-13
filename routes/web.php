@@ -19,6 +19,8 @@ Route::resource('event', 'EventController');
 
 Route::get('/user/events', 'EventController@userEvents')->name('user.events');
 
+Route::post('check-title', 'AjaxController@checkTitle');
+
 Route::get('search/date', 'SearchController@searchDate')->name('search.date');
 
 Route::post('search/date', 'AjaxController@searchDate');

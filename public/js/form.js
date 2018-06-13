@@ -1,5 +1,5 @@
 var autocomplete;
-function initAutocomplete() {
+function initAutocomplete() {// Google map autocomplete function
     // Create the autocomplete object, restricting the search to geographical
     // location types.
     let input = document.getElementById('place'),
@@ -17,6 +17,30 @@ function initAutocomplete() {
   }
 
   $(function() {
+    $('input[name=title]').on('blur', function() {
+      $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+      let value = $('input[name=title]').val(),
+          unique = false;
+      $.ajax({
+        type:'POST',
+        url:'/check-title',
+        data:{title: value},
+        success:function(data){
+          unique = (data == 0) ? true : false;
+          }
+      });
+
+      if (!unique) {
+        $('input[name=title]').addClass('is-invalid');
+        $('input[name=title] ~ .invalid-feedback').html('La valeur du champ titre est déjà utilisée.');
+      }
+
+    });
+
     $('.custom-file-input').on('change', function() {
       let filename = document.getElementById('file-input').files[0].name;
       $(this).next('.custom-file-label').html(filename);
@@ -24,6 +48,43 @@ function initAutocomplete() {
 
     // Form validation
     $('form').on('submit', function(e){
+      // Reset
+      $('.invalid-feedback').html('');
+      $('.is-invalid').removeClass('is-invalid');
+
+      // Verify date
+      let date_start = new Date($('input[name=date_start]').val()),
+          date_end = new Date($('input[name=date_end]').val()),
+          date = new Date();
+
+          date.setHours(0, 0, 0, 0);
+
+      if (date_start < date) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('input[name=date_start]').addClass('is-invalid');
+        $('input[name=date_start] ~ .invalid-feedback').html('La date de début doit être au moins aujourd\'hui');
+      }
+
+      if (date_end < date_start) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('input[name=date_end]').addClass('is-invalid');
+        $('input[name=date_end] ~ .invalid-feedback').html('La date de fin doit être après la date de début');
+      }
+
+      // Verify time
+      let time_start = new Date('01/01/2011 '+$('input[name=time_start]').val()),
+          time_end = new Date('01/01/2011 '+$('input[name=time_end]').val());
+
+      if (time_end < time_start) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('input[name=time_end]').addClass('is-invalid');
+        $('input[name=time_end] ~ .invalid-feedback').html('L\'heure de fin doit être après l\'heure de début');
+      }
+
+
       // Verify if a google place has been selected
       let place = $('input[name=place]').val(),
           place_verification = $('input[name=place_verification]').val();
@@ -31,7 +92,7 @@ function initAutocomplete() {
         e.preventDefault();
         e.stopPropagation();
         $('input[name=place]').addClass('is-invalid');
-        $('input[name=place]').parent().append('<div class="invalid-feedback">Veuillez entrer une adresse valide</div>')
+        $('input[name=place] ~ .invalid-feedback').html('Veuillez entrer une adresse valide');
       }
     });
   });

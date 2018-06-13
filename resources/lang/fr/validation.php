@@ -170,5 +170,11 @@ return [
         'time' => 'heure',
         'available' => 'disponible',
         'size' => 'taille',
+        'today' => 'aujourd\'hui',
+        'date_start' => 'date du début',
+        'date_end' => 'date de fin',
+        'time_start' => 'heure de début',
+        'time_end' => 'heure de fin',
+        'place' => 'lieu'
     ],
 ];
