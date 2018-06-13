@@ -49,6 +49,11 @@
               </div>
             </div>
             <div class="form-group">
+              {{ Form::label('place', 'Lieu')}}
+              {{ Form::text('place', null, ['class' => 'form-control'])}}
+              {{ Form::hidden('place_id') }}
+            </div>
+            <div class="form-group">
               {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation']) !!}
               {!! $errors->first('content', '<div class="invalid-feedback">:message</div>') !!}
             </div>
@@ -67,6 +72,25 @@
 @endsection
 
 @section('scripts')
+  <script>
+  var autocomplete;
+  function initAutocomplete() {
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      let input = document.getElementById('place'),
+          options = {types: [], placeIdOnly: true, componentRestrictions: {country: 'fr'}};
+
+      autocomplete = new google.maps.places.Autocomplete(input,options);
+
+      autocomplete.addListener('place_changed', getPlaceId);
+    }
+
+    function getPlaceId() {
+      let place = autocomplete.getPlace();
+      $('input[name=place_id]').val(place['place_id']);
+    }
+  </script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjExSHAuBYPmeKLtZAoVtnPRt43yA6bpw&libraries=places&callback=initAutocomplete" async defer></script>
   <script>
     $(function() {
       $('.custom-file-input').on('change', function() {

@@ -214,4 +214,6 @@ return [
 
     'faker_locale' => 'fr_FR',
 
+    'google_places_key' =>  'AIzaSyBjExSHAuBYPmeKLtZAoVtnPRt43yA6bpw',
+
 ];
