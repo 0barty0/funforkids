@@ -41,7 +41,6 @@
                     <ul class="navbar-nav mr-auto">
                       <li><a href="{{ route('show.search.city') }}" class="nav-link">Événements prévus</a></li>
                       <li><a href="{{ route('event.create') }}" class="nav-link">Créer un nouvel événement</a></li>
-                      {{-- <li><a href="{{ route('search.date') }}" class="nav-link">Chercher un événement</a></li> --}}
                       @auth
                         <li><a href="{{ route('user.events') }}" class="nav-link">Mes événements</a></li>
                       @endauth

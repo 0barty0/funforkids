@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SearchCityRequest;
 use App\Repositories\EventRepository;
 use App\Event;
@@ -24,6 +25,10 @@ class SearchController extends Controller
 
     public function showSearchCity()
     {
+        if (Auth::check()) {
+            $city = Auth::user()->city;
+            return redirect('search/city/'.$city);
+        }
         return view('search.city');
     }
 
