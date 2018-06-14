@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Event::class, function (Faker $faker) {
     /** @var \Geocoder\Provider\GoogleMaps\Model\GoogleAddress $address */
-    $address = $faker->frenchAddress();
+    $address = $faker->frenchAddress(['Toulouse','Albi']);
 
     $dateStart = $faker->dateTimeBetween('now', '+3 months');
     $nbDays = '+' .$faker->biasedNumberBetween(0, 5, 'Faker\Provider\Biased::linearLow'). ' days';
