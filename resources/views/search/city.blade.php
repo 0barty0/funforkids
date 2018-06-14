@@ -68,6 +68,9 @@
 @endsection
 
 @section('scripts')
+@empty ($events)
   <script src="/js/searchCity.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjExSHAuBYPmeKLtZAoVtnPRt43yA6bpw&libraries=places&callback=initAutocomplete" async defer></script>
+@endempty
+
 @endsection
