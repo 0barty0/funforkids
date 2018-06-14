@@ -32,7 +32,8 @@ class EventCreateRequest extends FormRequest
             'time_end' => 'required|date_format:H:i|after:time_start',
             'place' => 'required',
             'place_id' => 'required',
-            'image' => 'image'
+            'image' => 'image',
+            'tags' => ['Regex:/^[A-Za-z0-9-éèàù]{1,50}?(,[A-Za-z0-9-éèàù]{1,50})*$/']
         ];
     }
 }

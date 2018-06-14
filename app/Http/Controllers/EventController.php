@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\EventRepository;
+use App\Repositories\TagRepository;
 use App\Http\Requests\EventCreateRequest;
 use App\Http\Requests\EventUpdateRequest;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventCreateRequest $request)
+    public function store(EventCreateRequest $request, TagRepository $tagRepository)
     {
         if ($request->has('image')) {
             $path = $request->file('image')->store('public/images');
@@ -58,8 +59,11 @@ class EventController extends Controller
             $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
         }
 
+        $event = $this->eventRepository->store($inputs);
 
-        $this->eventRepository->store($inputs);
+        if (isset($inputs['tags'])) {
+            $tagRepository->store($post, $inputs['tags']);
+        }
 
         return redirect()->route('event.index')->withMessage('L\'événement "' .$inputs['title']. '" a été créé');
     }

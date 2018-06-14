@@ -30,3 +30,5 @@ Route::get('search/city', 'SearchController@showSearchCity')->name('show.search.
 Route::post('search/city', 'SearchController@searchCity')->name('search.city');
 
 Route::get('search/city/{city}', 'SearchController@showCity')->where('city', '[A-Za-z-]+');
+
+Route::get('search/tag/{tag}', 'SearchController@searchTag');

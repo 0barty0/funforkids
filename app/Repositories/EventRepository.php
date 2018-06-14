@@ -16,7 +16,7 @@ class EventRepository
 
     public function getPaginate($nb)
     {
-        return $this->event->with('user')->whereDate('events.date_start', '>=', date('Y-m-d'))->orderBy('events.date_start', 'asc')->paginate($nb);
+        return $this->event->with('user', 'tags')->whereDate('events.date_start', '>=', date('Y-m-d'))->orderBy('events.date_start', 'asc')->paginate($nb);
     }
 
     public function getAgenda()
@@ -28,6 +28,22 @@ class EventRepository
 
         while ($startDate <= $endDate) {
             $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDate($startDate->format('Y-m-d'));
+
+            $startDate->add(new \DateInterval('P1D')) ;
+        }
+
+        return $events;
+    }
+
+    public function getByTag($tag)
+    {
+        $startDate = new Date();
+        $endDate = clone $startDate;
+        $endDate->add(new \DateInterval('P6M'));
+        $events = [];
+
+        while ($startDate <= $endDate) {
+            $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDateAndTag($startDate->format('Y-m-d'), $tag);
 
             $startDate->add(new \DateInterval('P1D')) ;
         }
@@ -53,17 +69,28 @@ class EventRepository
 
     public function getByDate($date)
     {
-        return $this->event->with('user')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
+        return $this->event->with('user', 'tags')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
     }
 
     public function getByDateAndCity($date, $city)
     {
-        return $this->event->with('user')->whereRaw('locate("'.$city.'",place)')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
+        return $this->event->with('user', 'tags')->whereRaw('locate("'.$city.'",place)')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
+    }
+
+    public function getByDateAndTag($date, $tag)
+    {
+        $query = $this->event->with('user', 'tags')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc');
+
+        $events = $query->whereHas('tags', function ($q) use ($tag) {
+            $q->where('tags.tag_url', $tag);
+        })->get();
+
+        return $events;
     }
 
     public function store($inputs)
     {
-        $this->event->create($inputs);
+        return $this->event->create($inputs);
     }
 
     public function getById($id)
@@ -83,6 +110,8 @@ class EventRepository
 
     public function destroy($id)
     {
-        $this->event->findOrFail($id)->delete();
+        $event = $this->event->findOrFail($id);
+        $event->tags()->detach();
+        $event->delete();
     }
 }

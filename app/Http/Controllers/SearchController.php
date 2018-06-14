@@ -47,4 +47,11 @@ class SearchController extends Controller
 
         return view('search.city', compact('events', 'city'));
     }
+
+    public function searchTag($tag)
+    {
+        $events = $this->eventRepository->getByTag($tag);
+
+        return view('search.tag', compact('events', 'tag'));
+    }
 }
