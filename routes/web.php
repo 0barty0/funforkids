@@ -28,3 +28,5 @@ Route::post('search/date', 'AjaxController@searchDate')->name('search.date');
 Route::get('search/city', 'SearchController@showSearchCity')->name('show.search.city');
 
 Route::post('search/city', 'SearchController@searchCity')->name('search.city');
+
+Route::get('search/city/{city}', 'SearchController@showCity')->where('city', '[A-Za-z-]+');

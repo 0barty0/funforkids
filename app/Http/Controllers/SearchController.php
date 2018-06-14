@@ -13,6 +13,7 @@ class SearchController extends Controller
 
     public function __construct(EventRepository $eventRepository)
     {
+        $this->middleware('validCity', ['only' => 'showCity']);
         $this->eventRepository = $eventRepository;
     }
 
@@ -32,6 +33,11 @@ class SearchController extends Controller
 
         $city = explode(', ', $city)[0];
 
+        return redirect('search/city/'.$city);
+    }
+
+    public function showCity($city)
+    {
         $events = $this->eventRepository->getByCity($city);
 
         return view('search.city', compact('events', 'city'));
