@@ -19,6 +19,11 @@ class event extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
     public function getDateStartAttribute()
     {
         return Date::parse($this->attributes['date_start']);
