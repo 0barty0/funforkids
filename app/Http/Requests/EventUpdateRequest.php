@@ -32,7 +32,8 @@ class EventUpdateRequest extends FormRequest
           'date_end' => 'required|date|after_or_equal:date_start',
           'time_start' => 'required|date_format:H:i',
           'time_end' => 'required|date_format:H:i|after:time_start',
-          'image' => 'image'
+          'image' => 'image',
+          'tags' => ['Regex:/^[A-Za-z0-9-éèàù]{1,50}?(,[A-Za-z0-9-éèàù]{1,50})*$/']
         ];
     }
 }

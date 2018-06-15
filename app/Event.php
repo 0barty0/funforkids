@@ -73,4 +73,16 @@ class event extends Model
     {
         return \Storage::url($this->path_image);
     }
+
+    public function getListTags()
+    {
+        $tags = $this->tags()->select('tag')->get();
+        $result = [];
+
+        foreach ($tags as $tag) {
+            $result[] = $tag->tag;
+        }
+
+        return implode(',', $result);
+    }
 }

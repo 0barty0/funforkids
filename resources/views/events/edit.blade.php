@@ -61,6 +61,14 @@
             {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
             {!! $errors->first('content', '<div class="invalid-feedback">:message</div>') !!}
           </div>
+          <div class="form-group">
+            {{ Form::label('tags', 'Mots-clés') }}
+            {{ Form::text('tags', $event->getListTags(), ['class' => 'form-control' .($errors->has('tags')? ' is-invalid' : ''), 'placeholder' => 'Entrez les mots-clés séparés par des virgules', 'required' => 'true']) }}
+
+            <div class="invalid-feedback">
+              {!! $errors->first('tags', ':message') !!}
+            </div>
+          </div>
             @if (!is_null($event->path_image))
               <div class="form-group row">
                 <div class="col-md-4">

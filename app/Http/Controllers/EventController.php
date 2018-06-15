@@ -101,7 +101,7 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EventUpdateRequest $request, Event $event)
+    public function update(EventUpdateRequest $request, Event $event, TagRepository $tagRepository)
     {
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/images');
@@ -110,6 +110,10 @@ class EventController extends Controller
             $inputs = $request->all();
         }
         $this->eventRepository->update($event->id, $inputs);
+
+        if (isset($inputs['tags'])) {
+            $tagRepository->update($event, $inputs['tags']);
+        }
 
         return redirect()->route('user.events')->withMessage('L\'événement "' .$request->input('title'). '" a été modifié');
     }

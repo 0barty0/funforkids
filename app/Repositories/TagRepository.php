@@ -35,4 +35,12 @@ class TagRepository
             }
         }
     }
+
+    public function update($event, $tags)
+    {
+        if ($event->getListTags() !== $tags) {
+            $event->tags()->detach();
+            $this->store($event, $tags);
+        }
+    }
 }

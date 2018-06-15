@@ -22,6 +22,6 @@ class UserManage
             return $next($request);
         }
 
-        return new RedirectResponse(url('event'));
+        return new RedirectResponse(url('search/city'));
     }
 }
