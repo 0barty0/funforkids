@@ -20,9 +20,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+        <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="/images/logofunforkids.png" alt="logo" width="50px">
                     Fun For Kids
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      <li><a href="{{ route('show.search.city') }}" class="nav-link">Événements prévus</a></li>
-                      <li><a href="{{ route('event.create') }}" class="nav-link">Créer un nouvel événement</a></li>
+                      <li class="nav-item"><a href="{{ route('show.search.city') }}" class="nav-link">Événements prévus</a></li>
+                      <li class="nav-item"><a href="{{ route('event.create') }}" class="nav-link">Créer un nouvel événement</a></li>
                       @auth
-                        <li><a href="{{ route('user.events') }}" class="nav-link">Mes événements</a></li>
+                        <li class="nav-item"><a href="{{ route('user.events') }}" class="nav-link">Mes événements</a></li>
                       @endauth
 
                     </ul>
@@ -44,8 +45,8 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('S\'inscrire') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
