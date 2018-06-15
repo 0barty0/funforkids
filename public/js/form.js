@@ -18,6 +18,9 @@ function initAutocomplete() {// Google map autocomplete function
 
   $(function() {
     $('input[name=title]').on('blur', function() {
+      $('input[name=title]').removeClass('is-invalid');
+      $('input[name=title] ~ .invalid-feedback').html('');
+
       $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -30,14 +33,12 @@ function initAutocomplete() {// Google map autocomplete function
         url:'/check-title',
         data:{title: value},
         success:function(data){
-          unique = (data == 0) ? true : false;
+          if (data != 0) {
+            $('input[name=title]').addClass('is-invalid');
+            $('input[name=title] ~ .invalid-feedback').html('La valeur du champ titre est déjà utilisée.');
+          }
           }
       });
-
-      if (!unique) {
-        $('input[name=title]').addClass('is-invalid');
-        $('input[name=title] ~ .invalid-feedback').html('La valeur du champ titre est déjà utilisée.');
-      }
 
     });
 

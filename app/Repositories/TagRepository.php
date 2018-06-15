@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\TagRepository;
+namespace App\Repositories;
 
 use App\Tag;
 use Illuminate\Support\Str;

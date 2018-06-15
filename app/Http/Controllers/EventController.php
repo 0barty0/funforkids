@@ -62,7 +62,7 @@ class EventController extends Controller
         $event = $this->eventRepository->store($inputs);
 
         if (isset($inputs['tags'])) {
-            $tagRepository->store($post, $inputs['tags']);
+            $tagRepository->store($event, $inputs['tags']);
         }
 
         return redirect()->route('event.index')->withMessage('L\'événement "' .$inputs['title']. '" a été créé');

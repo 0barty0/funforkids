@@ -32,7 +32,7 @@
                   {!! Form::date('date_end', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_end')? ' is-invalid' : ''), 'required' => 'true']) !!}
 
                   <div class="invalid-feedback">
-                    {!! $errors->first('date_start', ':message') !!}
+                    {!! $errors->first('date_end', ':message') !!}
                   </div>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                   {!! Form::time('time_start', null, ['class' => 'form-control' .($errors->has('time_start')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
                   <div class="invalid-feedback">
-                    {!! $errors->first('date_start', ':message') !!}
+                    {!! $errors->first('time_start', ':message') !!}
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                   {!! Form::time('time_end', null, ['class' => 'form-control' .($errors->has('time_end')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
                   <div class="invalid-feedback">
-                    {!! $errors->first('date_start', ':message') !!}
+                    {!! $errors->first('time_start', ':message') !!}
                   </div>
                 </div>
               </div>
@@ -74,6 +74,14 @@
 
               <div class="invalid-feedback">
                 {!! $errors->first('content', ':message') !!}
+              </div>
+            </div>
+            <div class="form-group">
+              {{ Form::label('tags', 'Mots-clés') }}
+              {{ Form::text('tags', null, ['class' => 'form-control' .($errors->has('tags')? ' is-invalid' : ''), 'placeholder' => 'Entrez les mots-clés séparés par des virgules', 'required' => 'true']) }}
+
+              <div class="invalid-feedback">
+                {!! $errors->first('tags', ':message') !!}
               </div>
             </div>
             <div class="form-group">
