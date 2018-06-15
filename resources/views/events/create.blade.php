@@ -54,7 +54,7 @@
                   {!! Form::time('time_end', null, ['class' => 'form-control' .($errors->has('time_end')? ' is-invalid' : ''), 'placeholder' => 'hh:mm', 'required' => 'true']) !!}
 
                   <div class="invalid-feedback">
-                    {!! $errors->first('time_start', ':message') !!}
+                    {!! $errors->first('time_end', ':message') !!}
                   </div>
                 </div>
               </div>
