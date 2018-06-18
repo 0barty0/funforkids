@@ -10439,3 +10439,46 @@ a.navbar-brand {
   width: 100%;
 }
 
+#social_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#social_btn a {
+  color: #404e4d;
+  margin: 5px;
+}
+
+footer {
+  background-color: #5bc0eb;
+  padding-top: 20px;
+}
+
+/* clear fix */
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+

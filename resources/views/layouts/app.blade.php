@@ -15,11 +15,12 @@
     <script src="/js/menu.js"></script>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/app.css">
 
 </head>
 <body>
-    <div id="app">
+    <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -74,6 +75,26 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer>
+          <div class="row justify-content-around">
+            <div class="col-sm-4" id="social">
+                <h4 class="text-center">Partagez ce site</h4>
+                <div id="social_btn">
+                  <a href="#"><i class="fab fa-2x fa-facebook-square"></i></a>
+                  <a href="#"><i class="fab fa-2x fa-twitter-square"></i></a>
+                  <a href="#"><i class="fab fa-2x fa-google-plus-square"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <p id="copyright"><i class="far fa-copyright"></i> Fun for kids 2018</p>
+            </div>
+          </div>
+        </footer>
     </div>
 
     @yield('scripts')
