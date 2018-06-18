@@ -8,6 +8,32 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+html {
+  font-size: 0.7rem;
+}
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 0.8rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 0.9rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1rem;
+  }
+}
+
+.bg-green {
+  background-color: $green;
+}
+
 h1,a.navbar-brand {
   font-family: 'Permanent Marker', cursive;
 }
@@ -40,6 +66,7 @@ h1,a.navbar-brand {
 
 footer {
   background-color: $blue;
+  margin-top: 20px;
   padding-top: 20px;
 }
 
@@ -54,14 +81,27 @@ footer {
 
 .grid-sizer,
 .grid-item {
-  width: 33.333%;
+  width: 32.67%;
+}
+
+.gutter-sizer {
+  width: 1%;
 }
 
 .grid-item {
   float: left;
+  margin-bottom: 1%;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
 }
 
-.grid-item img {
-  display: block;
-  max-width: 100%;
+#home-text {
+  border: 5px solid $red;
+  background: repeat url("/images/symphony.png");
+  h1 {
+    line-height: 0.7em;
+  }
 }
