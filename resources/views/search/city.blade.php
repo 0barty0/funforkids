@@ -2,8 +2,7 @@
 
 @section('content')
   @empty ($events)
-    <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center py-4">
         <div class="col-md-5">
           {!! Form::open(['route'=>'search.city', 'class'=>'form-inline']) !!}
             <div class="input-group" id="search-city">
@@ -20,11 +19,10 @@
           {!! Form::close() !!}
         </div>
       </div>
-    </div>
   @endempty
 
  @isset($events)
-   <section class="container">
+   <section class="py-4">
      <h1 class="text-center">Prochains événements de prévus à {{ $city }}</h1>
 
      @foreach ($events as $yearName => $yearEvents)

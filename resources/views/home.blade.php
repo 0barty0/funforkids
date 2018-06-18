@@ -54,5 +54,5 @@ $grid.masonry();
 });
   </script>
   <script src="/js/searchCity.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY',false) }}&libraries=places&callback=initAutocomplete" async defer></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
 @endsection
