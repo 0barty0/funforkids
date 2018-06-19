@@ -26,6 +26,6 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'place' => $address->getFormattedAddress(),
         'place_id' => $address->getId(),
         'created_at' => $faker->dateTimeBetween('-3 months', 'now'),
-        'path_image' => 'public/images/' . $faker->image($dir = 'storage/app/public/images', $width = 640, $height = 480, false, false),
+        'path_image' => 'images/' . $faker->image($dir = 'public/storage/app/images', $width = 640, $height = 480, false, false),
     ];
 });

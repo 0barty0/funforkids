@@ -53,7 +53,7 @@ class EventController extends Controller
     public function store(EventCreateRequest $request, TagRepository $tagRepository)
     {
         if ($request->has('image')) {
-            $path = $request->file('image')->store('public/images');
+            $path = $request->file('image')->store('images');
             $inputs = array_merge($request->all(), ['user_id' => $request->user()->id, 'path_image' => $path]);
         } else {
             $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
@@ -65,7 +65,7 @@ class EventController extends Controller
             $tagRepository->store($event, $inputs['tags']);
         }
 
-        return redirect()->route('event.index')->withMessage('L\'événement "' .$inputs['title']. '" a été créé');
+        return redirect()->route('event.show', ['event'=>$event->id])->withMessage('L\'événement "' .$inputs['title']. '" a été créé');
     }
 
     /**
