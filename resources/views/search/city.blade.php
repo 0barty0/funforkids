@@ -2,22 +2,9 @@
 
 @section('content')
   @empty ($events)
-      <div class="row justify-content-center py-4">
-        <div class="col-md-5">
-          {!! Form::open(['route'=>'search.city', 'class'=>'form-inline']) !!}
-            <div class="input-group" id="search-city">
-                {!! Form::label('place', 'Votre ville', ['class' => 'sr-only']) !!}
-                {!! Form::text('place', null, ['id' => 'place', 'class' => 'form-control' .($errors->has('place')? 'is-invalid':''), 'required' => 'true', 'placeholder' => 'Votre ville']) !!}
-                {!! Form::hidden('place_verification') !!}
-                <div class="input-group-append">
-                  {!! Form::submit('Chercher', ['class'=>'btn btn-primary']) !!}
-                </div>
-                <div class="invalid-feedback">
-                  {{ $errors->first('place', ':message') }}
-                </div>
-            </div>
-          {!! Form::close() !!}
-        </div>
+      <div id="search-container" class="vertical-center">
+        @component('search.cityForm')
+        @endcomponent
       </div>
   @endempty
 
@@ -68,7 +55,7 @@
 @section('scripts')
 @empty ($events)
   <script src="/js/searchCity.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY',false) }}&libraries=places&callback=initAutocomplete" async defer></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
 @endempty
 
 @endsection

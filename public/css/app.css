@@ -10465,6 +10465,16 @@ a.navbar-brand {
   width: 100%;
 }
 
+#search-city input[type=text] {
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+#search-city input[type=submit] {
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
 #social_btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10521,5 +10531,11 @@ footer {
 
 #home-text h1 {
   line-height: 0.7em;
+}
+
+#search-container {
+  height: 50vh;
+  border: 5px solid #c3423f;
+  background: repeat url("/images/symphony.png");
 }
 
