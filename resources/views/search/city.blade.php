@@ -35,9 +35,11 @@
                      </div>
                      @foreach ($dayEvents as $event)
                        <article class="row mb-3">
-                         <div class="col-sm-2 text-sm-right vertical-center">
-                           <h5 class="p-2">{{ $event->time_start }}</h5>
-                           <h5 class="p-2">{{ $event->time_end }}</h5>
+                         <div class="col-sm-2 vertical-center">
+                           <div class="text-right text-sm-center p-3">
+                             <h5>{{ $event->time_start }}</h5>
+                             <h5>{{ $event->time_end }}</h5>
+                           </div>
                          </div>
                          <div class="col-sm-10">
                                @component('events.article', ['event' => $event])

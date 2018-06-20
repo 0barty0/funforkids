@@ -1,5 +1,5 @@
 <article class="card">
-  <div class="card-header text-white bg-primary">
+  <div class="card-header text-white bg-secondary">
     <div class="row">
       <div class="col-sm-8">
         <a href="/event/{{ $event->id }}" class="text-white"><h2>{{ $event->title }}</h2></a>
@@ -14,7 +14,7 @@
         <p>Lieu : {{ $event->place }}</p>
 
         @foreach ($event->tags as $tag)
-          {!! link_to('search/tag/' .$tag->tag_url, $tag->tag, ['class' => 'btn btn-warning btn-sm']) !!}
+          {!! link_to('search/tag/' .$tag->tag_url, $tag->tag, ['class' => 'btn btn-danger btn-sm']) !!}
         @endforeach
       </div>
       <div class="col-sm-4">
