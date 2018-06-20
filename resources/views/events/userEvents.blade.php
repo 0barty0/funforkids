@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
+@section('header')
+  <header>
+    <h1 class="display-4 text-center p-4">Vos événements</h1>
+  </header>
+@endsection
+
 @section('content')
+<section class="py-4">
   @if (session('message'))
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -10,9 +17,6 @@
       </div>
     </div>
   @endif
-
-      <section>
-        <h1 class="text-center">Vos événements</h1>
         @foreach ($events as $event)
           <article class="row justify-content-center">
             <div class="col-md-8 mb-3">

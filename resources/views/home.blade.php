@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
+@section('header')
+  <header class="mb-3">
+    <h1 class="display-2 text-center p-4">Fun for kids <br><small class="display-4">on occupe vos enfants</small></h1>
+    <h4 class="text-center">Trouvez près de chez vous des événements pour les petits</h4>
+    @component('search.cityForm')
+    @endcomponent
+  </header>
+@endsection
+
 @section('content')
-<div id="home-text" class="mb-3">
-  <h1 class="display-2 text-center p-4">Fun for kids <br><small class="display-4">on occupe vos enfants</small></h1>
-  <h4 class="text-center">Trouvez près de chez vous des événements pour les petits</h4>
-  @component('search.cityForm')
-  @endcomponent
-</div>
 <div class="grid">
   <div class="grid-sizer"></div>
   <div class="gutter-sizer"></div>

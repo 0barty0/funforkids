@@ -17,14 +17,19 @@ function initAutocomplete() {// Google map autocomplete function
   }
 
   $(function() {
-    //Scroll to the input field under the header
-    var elements = document.querySelectorAll('input,select,textarea');
-    for (var i = elements.length; i--;) {
-        elements[i].addEventListener('invalid', function () {
-            this.scrollIntoView(false);
-        });
-    }
+    //Scroll to the invalid input field
+    var delay = 0;
+    var offset = $('.navbar').height()+50;
 
+    document.addEventListener('invalid', function(e){
+       $(e.target).addClass("invalid");
+       $('html, body').animate({scrollTop: $($(".invalid")[0]).offset().top - offset }, delay);
+    }, true);
+    document.addEventListener('change', function(e){
+       $(e.target).removeClass("invalid")
+    }, true);
+
+    // Check if the title is unique
     $('input[name=title]').on('blur', function() {
       $('input[name=title]').removeClass('is-invalid');
       $('input[name=title] ~ .invalid-feedback').html('');

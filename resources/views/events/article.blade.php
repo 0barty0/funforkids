@@ -14,7 +14,7 @@
         <p>Lieu : {{ $event->place }}</p>
 
         @foreach ($event->tags as $tag)
-          {!! link_to('search/tag/' .$tag->tag_url, $tag->tag, ['class' => 'btn btn-info btn-sm']) !!}
+          {!! link_to('search/tag/' .$tag->tag_url, $tag->tag, ['class' => 'btn btn-warning btn-sm']) !!}
         @endforeach
       </div>
       <div class="col-sm-4">

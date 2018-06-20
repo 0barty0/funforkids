@@ -10437,11 +10437,6 @@ html {
   background-color: #9bc53d;
 }
 
-h1,
-a.navbar-brand {
-  font-family: 'Permanent Marker', cursive;
-}
-
 .vertical-center {
   display: -ms-flex;
   display: -webkit-box;
@@ -10456,9 +10451,20 @@ a.navbar-brand {
           justify-content: center;
 }
 
-#map {
-  width: 100%;
-  height: 400px;
+h1,
+a.navbar-brand {
+  font-family: 'Permanent Marker', cursive;
+}
+
+/**** Home page ****/
+
+header {
+  border: 5px solid #c3423f;
+  background: repeat url("/images/symphony.png");
+}
+
+header h1 {
+  line-height: 0.7em;
 }
 
 #search-city {
@@ -10475,25 +10481,7 @@ a.navbar-brand {
   border-top-right-radius: 15px;
 }
 
-#social_btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#social_btn a {
-  color: #404e4d;
-  margin: 5px;
-}
-
-footer {
-  background-color: #5bc0eb;
-  margin-top: 20px;
-  padding-top: 20px;
-}
+/**** Masonry ****/
 
 /* clear fix */
 
@@ -10502,8 +10490,6 @@ footer {
   display: block;
   clear: both;
 }
-
-/* ---- .grid-item ---- */
 
 .grid-sizer,
 .grid-item {
@@ -10524,18 +10510,45 @@ footer {
   max-width: 100%;
 }
 
-#home-text {
-  border: 5px solid #c3423f;
-  background: repeat url("/images/symphony.png");
+/**** Event ****/
+
+#map {
+  width: 100%;
+  height: 400px;
 }
 
-#home-text h1 {
-  line-height: 0.7em;
-}
+/**** Events list ****/
 
 #search-container {
   height: 50vh;
   border: 5px solid #c3423f;
   background: repeat url("/images/symphony.png");
+}
+
+.month-name {
+  border-top: 5px solid #9bc53d;
+  border-bottom: 5px solid #9bc53d;
+}
+
+/**** Footer ****/
+
+#social_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#social_btn a {
+  color: #404e4d;
+  margin: 5px;
+}
+
+footer {
+  background-color: #5bc0eb;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 

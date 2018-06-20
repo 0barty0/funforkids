@@ -21,7 +21,6 @@
 </head>
 <body>
     <div class="container-fluid">
-        <header>
           <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
               <div class="container">
                   <a class="navbar-brand" href="{{ url('/') }}">
@@ -72,7 +71,9 @@
                   </div>
               </div>
           </nav>
-        </header>
+          
+          @yield('header')
+
 
         <main>
             @yield('content')
