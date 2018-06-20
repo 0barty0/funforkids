@@ -17,6 +17,14 @@ function initAutocomplete() {// Google map autocomplete function
   }
 
   $(function() {
+    //Scroll to the input field under the header
+    var elements = document.querySelectorAll('input,select,textarea');
+    for (var i = elements.length; i--;) {
+        elements[i].addEventListener('invalid', function () {
+            this.scrollIntoView(false);
+        });
+    }
+
     $('input[name=title]').on('blur', function() {
       $('input[name=title]').removeClass('is-invalid');
       $('input[name=title] ~ .invalid-feedback').html('');
@@ -95,5 +103,6 @@ function initAutocomplete() {// Google map autocomplete function
         $('input[name=place]').addClass('is-invalid');
         $('input[name=place] ~ .invalid-feedback').html('Veuillez entrer une adresse valide');
       }
+      $('.is-invalid:first').focus();
     });
   });
