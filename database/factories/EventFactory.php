@@ -23,7 +23,7 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'date_end' => $dateEnd,
         'time_start'=> $timeStart,
         'time_end' => $timeEnd,
-        'place' => $address->getFormattedAddress(),
+        'place' => substr($address->getFormattedAddress(), 0, -8), // Remove France
         'place_id' => $address->getId(),
         'created_at' => $faker->dateTimeBetween('-3 months', 'now'),
         'path_image' => 'images/' . $faker->image($dir = 'public/storage/app/images', $width = 640, $height = 480, false, false),

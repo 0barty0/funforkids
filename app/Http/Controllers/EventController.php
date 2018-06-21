@@ -59,6 +59,8 @@ class EventController extends Controller
             $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
         }
 
+        $inputs['place']=substr($inputs['place'], 0, -8); // Remove France from address
+
         $event = $this->eventRepository->store($inputs);
 
         if (isset($inputs['tags'])) {
