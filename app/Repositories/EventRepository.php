@@ -58,8 +58,12 @@ class EventRepository
         $endDate->add(new \DateInterval('P6M'));
         $events = [];
 
+
         while ($startDate <= $endDate) {
-            $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDateAndCity($startDate->format('Y-m-d'), $city);
+            $result=$this->getByDateAndCity($startDate->format('Y-m-d'), $city);
+            if (count($result)!= 0) {
+                $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $result;
+            }
 
             $startDate->add(new \DateInterval('P1D')) ;
         }

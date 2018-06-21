@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('header')
-@empty ($events)
+@if (!isset($events))
     <header id="search-container" class="vertical-center p-4">
       @component('search.cityForm')
       @endcomponent
     </header>
-@endempty
+@endif
 @isset($events)
   <header>
     <h1 class="display-4 text-center p-4">Prochains événements de prévus à {{ $city }}</h1>
@@ -17,6 +17,9 @@
 
 @section('content')
  @isset($events)
+   @if (count($events) == 0)
+     <div class="alert alert-info">Pas d'événements</div>
+   @else
      @foreach ($events as $yearName => $yearEvents)
        @if (collect($yearEvents)->flatten()->isNotEmpty())
          <div class="year py-4">
@@ -56,6 +59,7 @@
          </div>
        @endif
      @endforeach
+   @endif
  @endisset
 
 @endsection
