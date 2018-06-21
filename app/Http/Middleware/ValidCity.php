@@ -17,7 +17,7 @@ class ValidCity
      */
     public function handle($request, Closure $next)
     {
-        $city = $request->city;
+        $city = urldecode($request->city);
         $client = new Client();
         $res = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address='. $city .'&region=fr&key=AIzaSyBjExSHAuBYPmeKLtZAoVtnPRt43yA6bpw');
         $body = $res->getBody();

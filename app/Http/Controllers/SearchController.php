@@ -26,7 +26,7 @@ class SearchController extends Controller
     public function showSearchCity()
     {
         if (Auth::check()) {
-            $city = Auth::user()->city;
+            $city = urlencode(Auth::user()->city);
             return redirect('search/city/'.$city);
         }
         return view('search.city');
@@ -36,13 +36,14 @@ class SearchController extends Controller
     {
         $city = $request->input('place');
 
-        $city = explode(', ', $city)[0];
+        $city = urlencode(explode(', ', $city)[0]);
 
         return redirect('search/city/'.$city);
     }
 
     public function showCity($city)
     {
+        $city = urldecode($city);
         $events = $this->eventRepository->getByCity($city);
 
         return view('search.city', compact('events', 'city'));
