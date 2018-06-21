@@ -91,11 +91,9 @@
             <div class="col-sm-4">
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <p id="copyright"><i class="far fa-copyright"></i> Fun for kids 2018</p>
-            </div>
-          </div>
+            <p class="text-center">
+              <i class="far fa-copyright"></i> Fun for kids 2018
+            </p>
         </footer>
   </div>
 

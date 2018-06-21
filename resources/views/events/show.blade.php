@@ -5,19 +5,24 @@
     <div class="col-md-8">
       @component('events.article', ['event'=>$event])
         <div class="card-body">
-          {{ $event->content }}
+          <p>{{ $event->content }}</p>
 
           <div class="row mt-4">
                 <div id="map"></div>
           </div>
         </div>
         <div class="card-footer">
-          <p class="text-right">
-            Par {{ $event->user->name }} le {{ $event->created_at->format('d/m/Y') }}
-          </p>
+          <div class="row">
+            <div class="col-6">
+              <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
+            </div>
+            <p class="text-right col-6">
+              <i class="fas fa-pencil-alt"></i> Par {{ $event->user->name }} le {{ $event->created_at->format('d/m/Y') }}
+            </p>
+          </div>
         </div>
       @endcomponent
-      <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
+
     </div>
   </section>
 @endsection

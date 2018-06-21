@@ -10475,8 +10475,12 @@ header {
   background: repeat url("/images/symphony.png");
 }
 
-header h1 {
+header .display-2 {
   line-height: 0.7em;
+}
+
+header .display-4 {
+  word-break: keep-all;
 }
 
 #search-city {
@@ -10524,6 +10528,11 @@ header h1 {
 
 /**** Event ****/
 
+.tag-container a {
+  display: inline-block;
+  margin-right: 1em;
+}
+
 #map {
   width: 100%;
   height: 400px;
@@ -10558,7 +10567,8 @@ header h1 {
 }
 
 footer {
-  background-color: #5bc0eb;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #fde74c;
   margin-top: 20px;
   padding-top: 20px;
 }
