@@ -13,9 +13,10 @@
         </p>
         <p>Lieu : {{ $event->place }}</p>
 
-        @foreach ($event->tags as $tag)
-          {!! link_to('search/tag/' .$tag->tag_url, $tag->tag, ['class' => 'btn btn-danger btn-sm']) !!}
-        @endforeach
+        <div class="tag-container">
+          @foreach ($event->tags as $tag)
+            {!! link_to('search/tag/' .$tag->tag_url, $tag->tag, ['class' => 'btn btn-danger btn-sm']) !!}
+          @endforeach</div>
       </div>
       <div class="col-sm-4">
         <img class="card-img-top" src="{{ $event->getImage() }}" alt="">

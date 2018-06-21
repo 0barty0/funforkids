@@ -2,7 +2,7 @@
 
 @section('header')
 @empty ($events)
-    <header id="search-container" class="vertical-center">
+    <header id="search-container" class="vertical-center p-4">
       @component('search.cityForm')
       @endcomponent
     </header>

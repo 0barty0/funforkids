@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    <div class="container-fluid">
+  <div id="wrapper" class="container-fluid d-flex flex-column">
           <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
               <div class="container">
                   <a class="navbar-brand" href="{{ url('/') }}">
@@ -71,11 +71,10 @@
                   </div>
               </div>
           </nav>
-          
+
           @yield('header')
 
-
-        <main>
+        <main class="flex-grow">
             @yield('content')
         </main>
 
@@ -98,7 +97,7 @@
             </div>
           </div>
         </footer>
-    </div>
+  </div>
 
     @yield('scripts')
 </body>

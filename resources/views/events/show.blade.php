@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <section class="row justify-content-center">
+  <section class="row justify-content-center py-4">
     <div class="col-md-8">
       @component('events.article', ['event'=>$event])
         <div class="card-body">
@@ -31,7 +31,7 @@
       geocoder.geocode({'placeId' : placeId}, function(results, status) {
         if (status === 'OK') {
           if (results[0]) {
-            map.setZoom(13);
+            map.setZoom(14);
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
               map: map,

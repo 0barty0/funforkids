@@ -10451,6 +10451,18 @@ html {
           justify-content: center;
 }
 
+/**** For putting the footer at the bottom ****/
+
+#wrapper {
+  min-height: 100vh;
+}
+
+.flex-grow {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 h1,
 a.navbar-brand {
   font-family: 'Permanent Marker', cursive;
@@ -10520,7 +10532,6 @@ header h1 {
 /**** Events list ****/
 
 #search-container {
-  height: 50vh;
   border: 5px solid #c3423f;
   background: repeat url("/images/symphony.png");
 }
@@ -10551,3 +10562,4 @@ footer {
   margin-top: 20px;
   padding-top: 20px;
 }
+
