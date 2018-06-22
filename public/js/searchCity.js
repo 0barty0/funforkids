@@ -16,7 +16,6 @@ function initAutocomplete() {// Google map autocomplete function
   }
 
   $(function() {
-    $('body').addClass('background');
     $('form').on('submit', function(e) {
       // Reset
       $('.invalid-feedback').html('');

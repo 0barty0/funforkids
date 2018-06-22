@@ -54,7 +54,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Se connecter') }}
                                 </button>
-
+                                <a class="btn btn-danger" href="{{ route('register') }}">
+                                    {{ __('S\'inscrire') }}
+                                </a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Mot de passe oublié ?') }}
                                 </a>

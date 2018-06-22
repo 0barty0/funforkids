@@ -22,10 +22,11 @@
        Pas d'événements de prévus
      </div>
    @else
-     <button id="scroll-top" class="btn btn-primary"><i class="fas fa-chevron-up"></i></button>
+     <button id="scroll-top" class="btn btn-primary" title="Revenir en haut"><i class="fas fa-chevron-up"></i></button>
 
      <div class="row justify-content-center pt-4">
        <div class="col-sm-4">
+          <label for="date-event" hidden="true">Choisir une date</label>
          <select name="date-event" id="date-event" class="custom-select custom-select-lg">
           <option selected>Choisir une date</option>
            @foreach ($events as $yearName => $yearEvents)
@@ -84,6 +85,11 @@
 
 @section('scripts')
 @if (!isset($events))
+  <script>
+        $(function(){
+          $('body').addClass('background');
+        });
+  </script>
   <script src="/js/searchCity.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
 @else
