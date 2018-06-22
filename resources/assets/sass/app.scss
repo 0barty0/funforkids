@@ -137,6 +137,17 @@ body.background {
   border-bottom: 5px solid $green;
 }
 
+#scroll-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1020;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
 /**** Footer ****/
 #social_btn {
   display: flex;

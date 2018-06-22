@@ -22,8 +22,10 @@
        Pas d'événements de prévus
      </div>
    @else
+     <button id="scroll-top" class="btn btn-primary"><i class="fas fa-chevron-up"></i></button>
+
      <div class="row justify-content-center pt-4">
-       <div class="col-sm-3">
+       <div class="col-sm-4">
          <select name="date-event" id="date-event" class="custom-select custom-select-lg">
           <option selected>Choisir une date</option>
            @foreach ($events as $yearName => $yearEvents)
@@ -87,6 +89,17 @@
 @else
   <script>
     $(function(){
+      $(window).on('scroll', function() {
+        if ($('body').scrollTop() > 20 || $('html').scrollTop() > 20) {
+          $('#scroll-top').show();
+        } else {
+          $('#scroll-top').hide();
+        }
+      });
+
+      $('#scroll-top').on('click', function() {
+        $('html,body').animate({scrollTop: 0-100},'slow');
+      });
       $('#date-event').on('change', function(){
         let dateId =$(this).val();
         $('html,body').animate({scrollTop: $('#'+dateId).offset().top-100},'slow');

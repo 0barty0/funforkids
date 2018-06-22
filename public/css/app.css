@@ -10539,8 +10539,9 @@ header .display-4 {
 }
 
 /**** Events list ****/
+
 body.background {
-  background: center url('/images/field.jpg');
+  background: center url("/images/field.jpg");
   background-size: cover;
 }
 
@@ -10552,6 +10553,17 @@ body.background {
 .month-name {
   border-top: 5px solid #9bc53d;
   border-bottom: 5px solid #9bc53d;
+}
+
+#scroll-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1020;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
 /**** Footer ****/
@@ -10576,3 +10588,4 @@ footer {
   margin-top: 20px;
   padding-top: 20px;
 }
+
