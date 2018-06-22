@@ -18,7 +18,9 @@
 @section('content')
  @isset($events)
    @if (count($events) == 0)
-     <div class="alert alert-info">Pas d'événements</div>
+     <div class="alert alert-info" role="alert">
+       Pas d'événements de prévus
+     </div>
    @else
      @foreach ($events as $yearName => $yearEvents)
        @if (collect($yearEvents)->flatten()->isNotEmpty())

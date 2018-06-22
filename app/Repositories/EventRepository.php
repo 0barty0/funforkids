@@ -43,7 +43,10 @@ class EventRepository
         $events = [];
 
         while ($startDate <= $endDate) {
-            $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $this->getByDateAndTag($startDate->format('Y-m-d'), $tag);
+            $result=$this->getByDateAndTag($startDate->format('Y-m-d'), $tag);
+            if (count($result)!= 0) {
+                $events[$startDate->format('Y')][$startDate->format('F')][$startDate->format('l d')] = $result;
+            }
 
             $startDate->add(new \DateInterval('P1D')) ;
         }
