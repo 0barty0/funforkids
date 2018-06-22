@@ -45,7 +45,6 @@ class SearchController extends Controller
     {
         $city = urldecode($city);
         $events = $this->eventRepository->getByCity($city);
-
         return view('search.city', compact('events', 'city'));
     }
 

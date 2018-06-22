@@ -22,6 +22,15 @@
        Pas d'événements de prévus
      </div>
    @else
+     <select name="date-event" id="date-event">
+       @foreach ($events as $yearName => $yearEvents)
+         @foreach ($yearEvents as $monthName => $monthEvents)
+           @foreach ($monthEvents as $dayName => $value)
+             <option value="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">{{ ucfirst($dayName).' '.$monthName.' '.$yearName }}</option>
+           @endforeach
+         @endforeach
+       @endforeach
+     </select>
      @foreach ($events as $yearName => $yearEvents)
        @if (collect($yearEvents)->flatten()->isNotEmpty())
          <div class="year py-4">
@@ -34,7 +43,7 @@
                    <h3 class="month-name text-center display-4">{{ ucfirst($monthName) }}</h3>
                @foreach ($monthEvents as $dayName => $dayEvents)
                  @if (count($dayEvents) != 0)
-                   <div class="card day py-2">
+                   <div class="card day py-2" id="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">
                      <div class="card-header">
                          <h4 class="day-name">{{ ucfirst($dayName) }}</h4>
                      </div>
@@ -67,9 +76,18 @@
 @endsection
 
 @section('scripts')
-@empty ($events)
+@if (!isset($events))
   <script src="/js/searchCity.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
-@endempty
+@else
+  <script>
+    $(function(){
+      $('#date-event').on('change', function(){
+        let dateId =$(this).val();
+        $('html,body').animate({scrollTop: $('#'+dateId).offset().top-100},'slow');
+      });
+    });
+  </script>
+@endif
 
 @endsection
