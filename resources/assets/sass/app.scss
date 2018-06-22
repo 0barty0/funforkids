@@ -122,6 +122,10 @@ header {
 }
 
 /**** Events list ****/
+body.background {
+  background: center url('/images/field.jpg');
+  background-size: cover;
+}
 
 #search-container {
   border: 5px solid $red;

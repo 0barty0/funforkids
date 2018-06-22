@@ -18,19 +18,24 @@
 @section('content')
  @isset($events)
    @if (count($events) == 0)
-     <div class="alert alert-info" role="alert">
+     <div class="alert alert-info my-4" role="alert">
        Pas d'événements de prévus
      </div>
    @else
-     <select name="date-event" id="date-event">
-       @foreach ($events as $yearName => $yearEvents)
-         @foreach ($yearEvents as $monthName => $monthEvents)
-           @foreach ($monthEvents as $dayName => $value)
-             <option value="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">{{ ucfirst($dayName).' '.$monthName.' '.$yearName }}</option>
+     <div class="row justify-content-center pt-4">
+       <div class="col-sm-3">
+         <select name="date-event" id="date-event" class="custom-select custom-select-lg">
+          <option selected>Choisir une date</option>
+           @foreach ($events as $yearName => $yearEvents)
+             @foreach ($yearEvents as $monthName => $monthEvents)
+               @foreach ($monthEvents as $dayName => $value)
+                 <option value="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">{{ ucfirst($dayName).' '.$monthName.' '.$yearName }}</option>
+               @endforeach
+             @endforeach
            @endforeach
-         @endforeach
-       @endforeach
-     </select>
+         </select>
+       </div>
+     </div>
      @foreach ($events as $yearName => $yearEvents)
        @if (collect($yearEvents)->flatten()->isNotEmpty())
          <div class="year py-4">

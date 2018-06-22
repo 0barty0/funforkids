@@ -10539,6 +10539,10 @@ header .display-4 {
 }
 
 /**** Events list ****/
+body.background {
+  background: center url('/images/field.jpg');
+  background-size: cover;
+}
 
 #search-container {
   border: 5px solid #c3423f;
@@ -10572,4 +10576,3 @@ footer {
   margin-top: 20px;
   padding-top: 20px;
 }
-
