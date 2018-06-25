@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row justify-content-center py-4">
+  <div class="container-fluid">
+      <div class="row justify-content-center py-4">
       <div class="col-md-8">
         <div class="card">
           <h2 class="card-header text-white bg-primary">Modification d'un événement</h2>
@@ -111,6 +112,7 @@
         </div>
       </div>
     </div>
+  </div>
 @endsection
 
 @section('scripts')

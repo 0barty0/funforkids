@@ -24,19 +24,21 @@
    @else
      <button id="scroll-top" class="btn btn-primary" title="Revenir en haut"><i class="fas fa-chevron-up"></i></button>
 
-     <div class="row justify-content-center pt-4">
-       <div class="col-sm-8 col-md-4">
-          <label for="date-event" hidden="true">Choisir une date</label>
-         <select name="date-event" id="date-event" class="custom-select custom-select-lg">
-          <option selected>Choisir une date</option>
-           @foreach ($events as $yearName => $yearEvents)
-             @foreach ($yearEvents as $monthName => $monthEvents)
-               @foreach ($monthEvents as $dayName => $value)
-                 <option value="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">{{ ucfirst($dayName).' '.$monthName.' '.$yearName }}</option>
+     <div class="container-fluid">
+       <div class="row justify-content-center pt-4">
+         <div class="col-sm-8 col-md-4">
+            <label for="date-event" hidden="true">Choisir une date</label>
+           <select name="date-event" id="date-event" class="custom-select custom-select-lg">
+            <option selected>Choisir une date</option>
+             @foreach ($events as $yearName => $yearEvents)
+               @foreach ($yearEvents as $monthName => $monthEvents)
+                 @foreach ($monthEvents as $dayName => $value)
+                   <option value="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">{{ ucfirst($dayName).' '.$monthName.' '.$yearName }}</option>
+                 @endforeach
                @endforeach
              @endforeach
-           @endforeach
-         </select>
+           </select>
+         </div>
        </div>
      </div>
      @foreach ($events as $yearName => $yearEvents)
@@ -56,18 +58,20 @@
                          <h4 class="day-name">{{ ucfirst($dayName) }}</h4>
                      </div>
                      @foreach ($dayEvents as $event)
-                       <article class="row mb-3">
-                         <div class="col-sm-2 vertical-center">
-                           <div class="text-right text-sm-center p-3">
-                             <h5>{{ $event->time_start }}</h5>
-                             <h5>{{ $event->time_end }}</h5>
+                       <div class="container-fluid">
+                         <article class="row mb-3">
+                           <div class="col-sm-2 vertical-center">
+                             <div class="text-right text-sm-center p-3">
+                               <h5>{{ $event->time_start }}</h5>
+                               <h5>{{ $event->time_end }}</h5>
+                             </div>
                            </div>
-                         </div>
-                         <div class="col-sm-10">
-                               @component('events.article', ['event' => $event])
-                               @endcomponent
-                         </div>
-                       </article>
+                           <div class="col-sm-10">
+                                 @component('events.article', ['event' => $event])
+                                 @endcomponent
+                           </div>
+                         </article>
+                       </div>
                      @endforeach
                    </div>
                  @endif

@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="author" content="Fabien Grondin">
+    <meta name="description" content="Fun for kids propose des événements pour les enfants mis en ligne par les parents">
+    <meta name="keywords" content="événement,enfant,parent,jeu,loisir">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,7 +22,7 @@
 
 </head>
 <body>
-  <div id="wrapper" class="container-fluid d-flex flex-column">
+  <div id="wrapper" class="container-fluid d-flex flex-column p-0">
           <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
               <div class="container-fluid">
                   <a class="navbar-brand" href="{{ url('/') }}">
@@ -79,21 +81,21 @@
         </main>
 
         <footer>
-          <div class="row justify-content-around">
-            <div class="col-sm-4" id="social">
-                <h4 class="text-center">Partagez ce site</h4>
-                <div id="social_btn">
-                  <a href="#"><i class="fab fa-2x fa-facebook-square"></i></a>
-                  <a href="#"><i class="fab fa-2x fa-twitter-square"></i></a>
-                  <a href="#"><i class="fab fa-2x fa-google-plus-square"></i></a>
-                </div>
+          <div class="container-fluid">
+            <div class="row justify-content-around">
+              <div class="col-sm-4" id="social">
+                  <h4 class="text-center">Partagez ce site</h4>
+                  <div id="social_btn">
+                    <a href="#"><i class="fab fa-2x fa-facebook-square"></i></a>
+                    <a href="#"><i class="fab fa-2x fa-twitter-square"></i></a>
+                    <a href="#"><i class="fab fa-2x fa-google-plus-square"></i></a>
+                  </div>
+              </div>
             </div>
-            <div class="col-sm-4">
-            </div>
+              <p class="text-center">
+                <i class="far fa-copyright"></i> Fun for kids 2018
+              </p>
           </div>
-            <p class="text-center">
-              <i class="far fa-copyright"></i> Fun for kids 2018
-            </p>
         </footer>
   </div>
 
