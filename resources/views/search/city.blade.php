@@ -25,7 +25,7 @@
      <button id="scroll-top" class="btn btn-primary" title="Revenir en haut"><i class="fas fa-chevron-up"></i></button>
 
      <div class="row justify-content-center pt-4">
-       <div class="col-sm-4">
+       <div class="col-sm-8 col-md-4">
           <label for="date-event" hidden="true">Choisir une date</label>
          <select name="date-event" id="date-event" class="custom-select custom-select-lg">
           <option selected>Choisir une date</option>

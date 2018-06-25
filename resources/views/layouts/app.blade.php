@@ -22,7 +22,7 @@
 <body>
   <div id="wrapper" class="container-fluid d-flex flex-column">
           <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
-              <div class="container">
+              <div class="container-fluid">
                   <a class="navbar-brand" href="{{ url('/') }}">
                       <img src="/images/logofunforkids.png" alt="logo" width="50px">
                       Fun For Kids
