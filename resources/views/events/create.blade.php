@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="form-group">
-              {!! Form::textarea('content', null, ['id' => 'content', 'class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
+              {!! Form::textarea('content', null, ['id' => 'content', 'class' => 'form-control' .($errors->has('content')? ' is-invalid' : '')]) !!}
 
               <div class="invalid-feedback">
                 {!! $errors->first('content', ':message') !!}
