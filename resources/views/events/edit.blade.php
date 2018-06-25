@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="form-group">
-              {!! Form::textarea('content', null, ['class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
+              {!! Form::textarea('content', null, ['id' => 'content', 'class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
 
               <div class="invalid-feedback">
                 {!! $errors->first('content', ':message') !!}
@@ -118,4 +118,11 @@
 @section('scripts')
   <script src="/js/form.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
+  <script src="/js/tinymce/tinymce.min.js"></script>
+  <script>tinymce.init({
+    selector: '#content',
+    min_height:250,
+    plugins:'lists,image',
+    language:'fr_FR'
+  });</script>
 @endsection

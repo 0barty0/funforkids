@@ -6,7 +6,7 @@
       <div class="col-md-8">
         @component('events.article', ['event'=>$event])
           <div class="card-body">
-            <p>{{ $event->content }}</p>
+            {!! $event->content !!}
 
             <div class="row mt-4">
                   <div id="map"></div>

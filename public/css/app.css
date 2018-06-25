@@ -10478,7 +10478,8 @@ html {
           flex: 1;
 }
 
-h1,
+nav h1,
+header h1,
 a.navbar-brand {
   font-family: 'Permanent Marker', cursive;
 }
