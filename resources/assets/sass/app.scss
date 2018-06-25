@@ -22,6 +22,19 @@ html {
   html {
     font-size: 0.9rem;
   }
+    /**** Shrinking nav ****/
+    nav.navbar {
+      height: 78px;
+    }
+    
+    nav.navbar.shrink {
+      max-height: 55px;
+    }
+
+    nav.navbar {
+      -webkit-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+    }
 }
 
 @include media-breakpoint-up(lg) {

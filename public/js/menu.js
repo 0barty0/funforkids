@@ -4,4 +4,12 @@ $(function(){
   } else {
     $('a[href="'+location.href+'"]').parent().addClass('active');
   }
+
+  $(window).on('scroll', function(){
+    if ($(this).scrollTop() > 50) {
+      $('nav').addClass('shrink');
+    } else {
+      $('nav').removeClass('shrink');
+    }
+  });
 });
