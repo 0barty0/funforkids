@@ -46,7 +46,7 @@ class SearchController extends Controller
     {
         $city = urldecode($city);
         $events = $this->eventRepository->getByCity($city);
-        $datesEvents = str_replace('.', '-', array_keys(array_dot($events)));//Retrieve only the dates
+        $datesEvents = array_keys(array_dot($events));//Retrieve only the dates
 
         return view('search.city', compact('events', 'city', 'datesEvents'));
     }
@@ -54,7 +54,8 @@ class SearchController extends Controller
     public function searchTag($tag)
     {
         $events = $this->eventRepository->getByTag($tag);
+        $datesEvents = array_keys(array_dot($events));
 
-        return view('search.tag', compact('events', 'tag'));
+        return view('search.tag', compact('events', 'tag', 'datesEvents'));
     }
 }
