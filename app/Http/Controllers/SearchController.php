@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SearchCityRequest;
 use App\Repositories\EventRepository;
 use App\Event;
+use Jenssegers\Date\Date;
 
 class SearchController extends Controller
 {
@@ -45,7 +46,9 @@ class SearchController extends Controller
     {
         $city = urldecode($city);
         $events = $this->eventRepository->getByCity($city);
-        return view('search.city', compact('events', 'city'));
+        $datesEvents = str_replace('.', '-', array_keys(array_dot($events)));//Retrieve only the dates
+
+        return view('search.city', compact('events', 'city', 'datesEvents'));
     }
 
     public function searchTag($tag)

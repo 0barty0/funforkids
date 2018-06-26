@@ -28,16 +28,7 @@
        <div class="row justify-content-center pt-4">
          <div class="col-sm-8 col-md-4">
             <label for="date-event" hidden="true">Choisir une date</label>
-           <select name="date-event" id="date-event" class="custom-select custom-select-lg">
-            <option selected>Choisir une date</option>
-             @foreach ($events as $yearName => $yearEvents)
-               @foreach ($yearEvents as $monthName => $monthEvents)
-                 @foreach ($monthEvents as $dayName => $value)
-                   <option value="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">{{ ucfirst($dayName).' '.$monthName.' '.$yearName }}</option>
-                 @endforeach
-               @endforeach
-             @endforeach
-           </select>
+           <input type="text" name="date-event" id="date-event" class="form-control" placeholder="Choisir une date">
          </div>
        </div>
      </div>
@@ -97,7 +88,24 @@
   <script src="/js/searchCity.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
 @else
+  <script src="/js/moment.min.js"></script>
+  <script src="/js/fr.js"></script>
+  <script src="/js/pikaday.js"></script>
   <script>
+      function eventDate(date) {
+        let dateString = moment(date).format('YYYY-MMMM-dddd DD');
+        let dateArray = {!! json_encode($datesEvents) !!};
+        return !dateArray.includes(dateString);
+      }
+
+      moment.locale('fr');
+      var picker = new Pikaday({
+        field: document.getElementById('date-event'),
+        format: 'dddd DD MMMM YYYY',
+        minDate: moment().toDate(),
+        disableDayFn: eventDate
+        });
+
     $(function(){
       $(window).on('scroll', function() {
         if ($('body').scrollTop() > 20 || $('html').scrollTop() > 20) {
@@ -111,7 +119,7 @@
         $('html,body').animate({scrollTop: 0-100},'slow');
       });
       $('#date-event').on('change', function(){
-        let dateId =$(this).val();
+        let dateId =picker.toString('YYYY-MMMM-DD');
         $('html,body').animate({scrollTop: $('#'+dateId).offset().top-100},'slow');
       });
     });
