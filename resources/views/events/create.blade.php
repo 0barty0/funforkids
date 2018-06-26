@@ -20,7 +20,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   {!! Form::label('date_start', 'Date du début') !!}
-                  {!! Form::date('date_start', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_start')? ' is-invalid' : ''), 'required' => 'true']) !!}
+                  {!! Form::date('date_start', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_start')? ' is-invalid' : ''), 'min'=>Carbon\Carbon::now()->toDateString(), 'required' => 'true']) !!}
 
                   <div class="invalid-feedback">
                     {!! $errors->first('date_start', ':message') !!}
@@ -30,7 +30,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   {!! Form::label('date_end', 'Date de fin') !!}
-                  {!! Form::date('date_end', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_end')? ' is-invalid' : ''), 'required' => 'true']) !!}
+                  {!! Form::date('date_end', Carbon\Carbon::now(), ['class' => 'form-control' .($errors->has('date_end')? ' is-invalid' : ''), 'min'=>Carbon\Carbon::now()->toDateString(),  'required' => 'true']) !!}
 
                   <div class="invalid-feedback">
                     {!! $errors->first('date_end', ':message') !!}
@@ -71,6 +71,7 @@
               </div>
             </div>
             <div class="form-group">
+              {!! Form::label('content', 'Présentation') !!}
               {!! Form::textarea('content', null, ['id' => 'content', 'class' => 'form-control' .($errors->has('content')? ' is-invalid' : '')]) !!}
 
               <div class="invalid-feedback">

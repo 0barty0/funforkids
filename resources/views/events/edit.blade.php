@@ -71,6 +71,7 @@
               </div>
             </div>
             <div class="form-group">
+              {!! Form::label('content', 'Présentation') !!}
               {!! Form::textarea('content', null, ['id' => 'content', 'class' => 'form-control' .($errors->has('content')? ' is-invalid' : ''), 'placeholder' => 'Présentation', 'required' => 'true']) !!}
 
               <div class="invalid-feedback">
