@@ -37,47 +37,16 @@
   <script src="/js/searchCity.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_maps_api_key') }}&libraries=places&callback=initAutocomplete" async defer></script>
 @else
-  <script src="/js/moment.min.js"></script>
-  <script src="/js/fr.js"></script>
-  <script src="/js/pikaday.js"></script>
+  <script src="/js/pikaday/moment.min.js"></script>
+  <script src="/js/pikaday/fr.js"></script>
+  <script src="/js/pikaday/pikaday.js"></script>
   <script>
-      function eventDate(date) {
-        let dateString = moment(date).format('YYYY.MMMM.dddd DD');
-        let dateArray = {!! json_encode($datesEvents) !!};
-        return !dateArray.includes(dateString);
-      }
-
-    $(function(){
-      $(window).on('scroll', function() {
-        if ($('body').scrollTop() > 20 || $('html').scrollTop() > 20) {
-          $('#scroll-top').show();
-        } else {
-          $('#scroll-top').hide();
-        }
-      });
-
-      $('#scroll-top').on('click', function() {
-        $('#date-event').val('');
-        $('html,body').animate({scrollTop: 0-100},'slow');
-      });
-
-      moment.locale('fr');
-      var picker = new Pikaday({
-        field: document.getElementById('date-event'),
-        format: 'dddd DD MMMM YYYY',
-        minDate: moment().toDate(),
-        disableDayFn: eventDate
-        });
-
-      $('#date-event-container').on('click', function() {
-        picker.show();
-      });
-
-      $('#date-event').on('change', function(){
-        let dateId =picker.toString('YYYY-MMMM-DD');
-        $('html,body').animate({scrollTop: $('#'+dateId).offset().top-100},'slow');
-      });
-    });
+  function eventDate(date) {
+    let dateString = moment(date).format('YYYY.MMMM.dddd DD');
+    let dateArray = {!! json_encode($datesEvents) !!};
+    return !dateArray.includes(dateString);
+  }
   </script>
+  <script src="/js/results.js"></script>
 @endif
 @endsection
