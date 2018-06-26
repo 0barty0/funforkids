@@ -26,8 +26,8 @@
 @endsection
 
 @section('scripts')
-  <script src="js/masonry.pkgd.min.js"></script>
-  <script src="js/imagesloaded.pkgd.min.js"></script>
+  <script src="js/masonry/masonry.pkgd.min.js"></script>
+  <script src="js/masonry/imagesloaded.pkgd.min.js"></script>
   <script>
   // init Masonry
 var $grid = $('.grid').masonry({
