@@ -81,7 +81,7 @@ class EventRepository
 
     public function getByDateAndCity($date, $city)
     {
-        return $this->event->with('user', 'tags')->whereRaw('locate("'.$city.'",place)')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
+        return $this->event->with('user', 'tags')->whereRaw('place REGEXP "'.$city.'$"')->where('events.date_start', '<=', $date)->where('events.date_end', '>=', $date)->orderBy('events.time_start', 'asc')->get();
     }
 
     public function getByDateAndTag($date, $tag)
