@@ -117,7 +117,7 @@
                   <div id="social_btn">
                     <a href="#" id="fb-button"><i class="fab fa-2x fa-facebook-square"></i></a>
                     <a href="https://twitter.com/share" target="_blank"><i class="fab fa-2x fa-twitter-square"></i></a>
-                    <a href="#"><i class="fab fa-2x fa-google-plus-square"></i></a>
+                    <a href="https://plus.google.com/share?url=funforkids.000webhostapp.com" target="_blank"><i class="fab fa-2x fa-google-plus-square"></i></a>
                   </div>
               </div>
             </div>
