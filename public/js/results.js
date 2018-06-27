@@ -17,6 +17,7 @@ var picker = new Pikaday({
   field: document.getElementById('date-event'),
   format: 'dddd DD MMMM YYYY',
   minDate: moment().toDate(),
+  defaultDate: moment(dateArray[0],'YYYY.MMMM.dddd DD').toDate(),
   disableDayFn: eventDate
   });
 

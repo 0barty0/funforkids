@@ -41,9 +41,9 @@
   <script src="/js/pikaday/fr.js"></script>
   <script src="/js/pikaday/pikaday.js"></script>
   <script>
+  var dateArray = {!! json_encode($datesEvents) !!};
   function eventDate(date) {
     let dateString = moment(date).format('YYYY.MMMM.dddd DD');
-    let dateArray = {!! json_encode($datesEvents) !!};
     return !dateArray.includes(dateString);
   }
   </script>
