@@ -9,7 +9,11 @@
     <meta name="keywords" content="événement,enfant,parent,jeu,loisir">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <!-- Open graph -->
+    <meta property="og:url"                content="http://funforkids.000webhostapp.com" />
+    <meta property="og:title"              content="Fun for kids" />
+    <meta property="og:description"        content="Des événements pour les enfants par les parents" />
+    <meta property="og:image"              content="/images/home1.jpg" />
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -22,6 +26,24 @@
 
 </head>
 <body>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '804964023031161',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.0'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
   <div id="wrapper" class="container-fluid d-flex flex-column p-0">
           <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
               <div class="container-fluid">
@@ -86,7 +108,7 @@
               <div class="col-sm-4" id="social">
                   <h4 class="text-center">Partagez ce site</h4>
                   <div id="social_btn">
-                    <a href="#"><i class="fab fa-2x fa-facebook-square"></i></a>
+                    <a href="#" id="fb-button"><i class="fab fa-2x fa-facebook-square"></i></a>
                     <a href="#"><i class="fab fa-2x fa-twitter-square"></i></a>
                     <a href="#"><i class="fab fa-2x fa-google-plus-square"></i></a>
                   </div>
@@ -98,7 +120,16 @@
           </div>
         </footer>
   </div>
-
+<script>
+document.getElementById('fb-button').onclick = function(e) {
+e.preventDefault();
+FB.ui({
+  method: 'share',
+  mobile_iframe: true,
+  href: 'http://funforkids.000webhostapp.com',
+}, function(response){});
+}
+</script>
     @yield('scripts')
 </body>
 </html>
