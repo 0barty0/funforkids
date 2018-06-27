@@ -15,7 +15,13 @@
     <meta property="og:description"        content="Des événements pour les enfants par les parents" />
     <meta property="og:image"              content="/images/home1.jpg" />
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@funforkids">
+    <meta name="twitter:title" content="Fun for kids">
+    <meta name="twitter:description" content="Des événements pour les enfants par les parents">
+    <meta name="twitter:creator" content="Fun for kids">
+    <meta name="twitter:image:src" content="/images/home1.jpg">
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/js/menu.js"></script>
@@ -44,6 +50,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
+
   <div id="wrapper" class="container-fluid d-flex flex-column p-0">
           <nav class="navbar navbar-expand-md navbar-light bg-warning sticky-top">
               <div class="container-fluid">
@@ -109,7 +116,7 @@
                   <h4 class="text-center">Partagez ce site</h4>
                   <div id="social_btn">
                     <a href="#" id="fb-button"><i class="fab fa-2x fa-facebook-square"></i></a>
-                    <a href="#"><i class="fab fa-2x fa-twitter-square"></i></a>
+                    <a href="https://twitter.com/share" target="_blank"><i class="fab fa-2x fa-twitter-square"></i></a>
                     <a href="#"><i class="fab fa-2x fa-google-plus-square"></i></a>
                   </div>
               </div>
