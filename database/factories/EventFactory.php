@@ -16,7 +16,7 @@ $factory->define(App\Event::class, function (Faker $faker) {
     $timeStart = $h_time_start . ":" ."00".":00";
     $timeEnd = $h_time_end . ":" ."00".":00";
     return [
-        'title' => $faker->sentence(rand(4, 10)),
+        'title' => $faker->realText($maxNbChars = 60, $indexSize = 2),
         'content' => $faker->realText($maxNbChars = 200, $indexSize = 2),
         'user_id' => rand(1, 10),
         'date_start' => $dateStart,

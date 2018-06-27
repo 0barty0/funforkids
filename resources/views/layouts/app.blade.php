@@ -16,12 +16,12 @@
     <meta property="og:image"              content="/images/home1.jpg" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Twitter card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@funforkids">
-    <meta name="twitter:title" content="Fun for kids">
-    <meta name="twitter:description" content="Des événements pour les enfants par les parents">
-    <meta name="twitter:creator" content="Fun for kids">
-    <meta name="twitter:image:src" content="/images/home1.jpg">
+    <meta name="twitter:card"              content="summary">
+    <meta name="twitter:site"              content="@funforkids">
+    <meta name="twitter:title"             content="Fun for kids">
+    <meta name="twitter:description"       content="Des événements pour les enfants par les parents">
+    <meta name="twitter:creator"           content="Fun for kids">
+    <meta name="twitter:image:src"         content="/images/home1.jpg">
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/js/menu.js"></script>
@@ -116,7 +116,7 @@
                   <h4 class="text-center">Partagez ce site</h4>
                   <div id="social_btn">
                     <a href="#" id="fb-button"><i class="fab fa-2x fa-facebook-square"></i></a>
-                    <a href="https://twitter.com/share" target="_blank"><i class="fab fa-2x fa-twitter-square"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url=http://funforkids.000webhostapp.com" target="_blank"><i class="fab fa-2x fa-twitter-square"></i></a>
                     <a href="https://plus.google.com/share?url=funforkids.000webhostapp.com" target="_blank"><i class="fab fa-2x fa-google-plus-square"></i></a>
                   </div>
               </div>
