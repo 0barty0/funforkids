@@ -90,6 +90,10 @@
               <div class="custom-file">
                 {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'file-input']) !!}
                 {!! Form::label('image', 'Choisir une image pour illustrer', ['class' => 'custom-file-label']) !!}
+                <small class="form-text text-muted">La taille du fichier doit-être moins de 1 Mo</small>
+                <div class="invalid-feedback">
+                  {!! $errors->first('image', ':message') !!}
+                </div>
               </div>
             </div>
             {!! Form::submit('Publier', ['class' => 'btn btn-primary float-right']) !!}

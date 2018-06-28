@@ -93,16 +93,23 @@
                   </div>
                   <div class="col-md-8">
                     <div class="custom-file">
-                      {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'file-input']) !!}
+                      {!! Form::file('image', ['class' => 'custom-file-input'.($errors->has('image')? ' is-invalid' : ''), 'id' => 'file-input']) !!}
                       {!! Form::label('image', 'Changer d\'image', ['class' => 'custom-file-label']) !!}
+                      <div class="invalid-feedback">
+                        {!! $errors->first('image', ':message') !!}
+                      </div>
                     </div>
                   </div>
                 </div>
               @else
                 <div class="form-group">
                   <div class="custom-file">
-                    {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'file-input']) !!}
+                    {!! Form::file('image', ['class' => 'custom-file-input'.($errors->has('image')? ' is-invalid' : ''), 'id' => 'file-input']) !!}
                     {!! Form::label('image', 'Choisir une image pour illustrer', ['class' => 'custom-file-label']) !!}
+                    <small class="form-text text-muted">La taille du fichier doit-être moins de 1 Mo</small>
+                    <div class="invalid-feedback">
+                      {!! $errors->first('image', ':message') !!}
+                    </div>
                   </div>
                 </div>
               @endif

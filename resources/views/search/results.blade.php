@@ -12,43 +12,39 @@
   </div>
 </div>
 @foreach ($events as $yearName => $yearEvents)
-  @if (collect($yearEvents)->flatten()->isNotEmpty())
     <div class="year py-4">
       @if (!$loop->first)
       <h2 class="year-name text-center">{{ $yearName }}</h2>
       @endif
     @foreach ($yearEvents as $monthName => $monthEvents)
-      @if (collect($monthEvents)->flatten()->isNotEmpty())
         <div class="month pb-3">
               <h3 class="month-name text-center display-4">{{ ucfirst($monthName) }}</h3>
-          @foreach ($monthEvents as $dayName => $dayEvents)
-            @if (count($dayEvents) != 0)
-              <div class="card day py-2" id="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">
-                <div class="card-header">
-                    <h4 class="day-name">{{ ucfirst($dayName) }}</h4>
-                </div>
-                @foreach ($dayEvents as $event)
-                  <div class="container-fluid">
-                    <article class="row mb-3">
-                      <div class="col-sm-2 vertical-center">
-                        <div class="text-right text-sm-center p-3">
-                          <h5>{{ $event->time_start }}</h5>
-                          <h5>{{ $event->time_end }}</h5>
+                <div class="container">
+                  @foreach ($monthEvents as $dayName => $dayEvents)
+                      <div class="card day py-2 my-2" id="{{ $yearName.'-'.$monthName.'-'.(explode(' ',$dayName)[1]) }}">
+                        <div class="card-header">
+                            <h4 class="day-name">{{ ucfirst($dayName) }}</h4>
                         </div>
+                        @foreach ($dayEvents as $event)
+                          <div class="container-fluid">
+                            <article class="row mb-3">
+                              <div class="col-sm-2 vertical-center">
+                                <div class="text-right text-sm-center p-3">
+                                  <h5>{{ $event->time_start }}</h5>
+                                  <h5>{{ $event->time_end }}</h5>
+                                </div>
+                              </div>
+                              <div class="col-sm-10">
+                                    @component('events.article', ['event' => $event])
+                                    @endcomponent
+                              </div>
+                            </article>
+                          </div>
+                        @endforeach
                       </div>
-                      <div class="col-sm-10">
-                            @component('events.article', ['event' => $event])
-                            @endcomponent
-                      </div>
-                    </article>
-                  </div>
-                @endforeach
+                  @endforeach
               </div>
-            @endif
-          @endforeach
         </div>
-      @endif
     @endforeach
     </div>
-  @endif
 @endforeach
