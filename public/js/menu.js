@@ -6,7 +6,7 @@ $(function(){
   }
 
   $(window).on('scroll', function(){
-    if ($(this).scrollTop() > 50) {
+    if ($(this).scrollTop() > 0) {
       $('nav').addClass('shrink');
     } else {
       $('nav').removeClass('shrink');

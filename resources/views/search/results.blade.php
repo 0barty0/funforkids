@@ -29,7 +29,7 @@
                           <div class="container-fluid">
                             <article class="row mb-3">
                               <div class="col-sm-2 vertical-center">
-                                <div class="text-right text-sm-center p-3">
+                                <div class="text-right text-sm-center p-1">
                                   <h5>{{ $event->time_start }}</h5>
                                   <h5>{{ $event->time_end }}</h5>
                                 </div>
