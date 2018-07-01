@@ -8,6 +8,7 @@ use App\Http\Requests\EventCreateRequest;
 use App\Http\Requests\EventUpdateRequest;
 use Illuminate\Http\Request;
 use App\Event;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class EventController extends Controller
 {
@@ -54,6 +55,14 @@ class EventController extends Controller
     {
         if ($request->has('image')) {
             $path = $request->file('image')->store('images');
+
+            // Resize the image
+            $thumbnail = Image::make(public_path('storage/app/').$path);
+            $thumbnail->resize(400, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $thumbnail->save();
+
             $inputs = array_merge($request->all(), ['user_id' => $request->user()->id, 'path_image' => $path]);
         } else {
             $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
